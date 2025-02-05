@@ -53,23 +53,25 @@ if($_SESSION['user']==1){
 
 <head>
     <meta charset="utf-8">
-    <title>D.I.BLOG</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Collection of Book</title>
+    <link rel="stylesheet" type="text/css" href="mypage.css">
 </head>
 
 <body>
     <header>
-        <img src="img/diblog_logo.jpg">
+        <div class="img_icon">
+            <img src="img/library.png">
+        </div>
+        
         <div class="content">
             <ul class="menu">
-                <li><a href="index.php">トップ</a></li>
-                <li>プロフィール</li>
-                <li>D.I.Blogについて</li>
-                <li>登録フォーム</li>
-                <li>問い合わせ</li>
-                <li>その他</li>
-                <li> <?php echo $reg; ?></li>
-                <li> <?php echo $li; ?></li>
+                <li>
+                    <h1>Collection Of Book</h1>
+                </li>
+                <li><a href="mypage.php">マイページ</a></li>
+                <li> <a href="profile.php">プロフィール</a></li>
+                <li> <a href="newbook.php">蔵書登録</a></li>
+                <li> <a href="search.php">蔵書検索</a></li>
                 <li><a href="login.php">ログイン</a></li>
                 <li><a href="logout.php">ログアウト</a></li>
             </ul>
@@ -77,85 +79,57 @@ if($_SESSION['user']==1){
     </header>
 
     <main>
-        <div class="main">
-            <div class="left">
-                <h1>プログラミングに役立つ書籍</h1>
-                <div class="ymd">2017年1月15日</div>
-                <br>
-                <img src="img/bookstore.jpg">
-                <p>D.I.BlogはD.I.Wroksが提供する演習課題です。</p><br>
-                <p>記事中身</p>
-                <div class="main_menu">
-                    <div class="pic1">
-                        <img src="img/pic1.jpg">
-                        <p>ドメイン取得方法</p>　
-                    </div>
-                    <div class="pic1">
-                        <img src="img/pic2.jpg">
-                        <p>快適な職場環境</p>　
-                    </div>
-                    <div class="pic1">
-                        <img src="img/pic3.jpg">
-                        <p>Linuxの基礎</p>　
-                    </div>
-                    <div class="pic1">
-                        <img src="img/pic4.jpg">
-                        <p>マーケティング入門</p>　
-                    </div>
-                    <br>
-                    <div class="pic2">
-                        <img src="img/pic5.jpg">
-                        <p>アクティブラーニング</p>　
-                    </div>
-                    <div class="pic2">
-                        <img src="img/pic6.jpg">
-                        <p>CSSの効率的な勉強方法</p>　
-                    </div>
-                    <div class="pic2">
-                        <img src="img/pic7.jpg">
-                        <p>リーダブルコードとは</p>　
-                    </div>
-                    <div class="pic2">
-                        <img src="img/pic8.jpg">
-                        <p>HTML5の可能性</p>　
-                    </div>
+        <?php
+        mb_internal_encoding("utf8");
+        $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
+        $stmt=$pdo->query("select* from collection_book");
+        
 
-                </div>
+        
+             while($row=$stmt->fetch()){
+                echo  '<table border="1">' ;
+                echo "<tr>";
+                 $result= $row['id'];
+                echo "<td>".$result."</td>";
+                echo "<td>". $row['title']."</td>";
+                echo "<td>". $row['author']."</td>";
+                echo "<td>". $row['isbn']."</td>";
+                echo "<td>". $row['publisher']."</td>";
+                echo "<td>". $row['publication_date']."</td>";
+    
+               
+                $option=['0'=>'未読',
+                         '1'=>'既読'];
+                    $unread=$row['unread'] ;
+                    $unreaddisp=$option[$row['unread']];
+                echo "<td>".$unreaddisp."</td>";
+        
+                echo "<td>". $row['memo']."</td>";
+        
+                echo "<td>";
+                echo '<form method="post" class="back" action="update.php" >';
+                echo"<input type='hidden' value={$result} name='resultid1' id='resultid1'>";
+                echo'<input type="submit" class="back" value="更新">';
+                echo"</form>";
+                echo"</td>";
 
-            </div>
-            <div class="right">
-                <h3>人気の記事</h3>
-                <ul>
-                    <li><a href=""> PHPオススメ本</a></li>
-                    <li><a href="">PHP　MyAdminの使い方</a></li>
-                    <li><a href="">いま人気のエディタTops</a></li>
-                    <li><a href="">HTMLの基礎</a></li>
-                </ul>
-
-                <h3>オススメリンク</h3>
-                <ul>
-                    <li><a href=""> ﾃﾞｨｰｱｲﾜｰｸｽ株式会社</a></li>
-                    <li><a href="">XAMPPのダウンロード</a></li>
-                    <li> <a href="">Eclipseのダウンロード</a></li>
-                    <li> <a href="">Braketsのダウンロード</a></li>
-                </ul>
-
-                <h3>カテゴリ</h3>
-                <ul>
-                    <li> <a href=""> HTML</a></li>
-                    <li><a href=""> PHP</a></li>
-                    <li><a href=""> MySQL</a></li>
-                    <li><a href=""> JavaScript</a></li>
-                </ul>
-
-            </div>
-
-        </div>
+                echo "<td>";
+                echo '<form  method="post" class="back" action="delete.php">';
+                echo"<input type='hidden' value={$result} name='resultid2' id='resultid2'>";
+                echo"<input type='submit' class='back' value='削除'>";
+ 
+                echo"</form>";
+                echo"</td>";
+                echo" </tr>";
+            
+               }
+          
+         echo  " </table>";
+    ?>
+    
     </main>
 
-    <footer>
-        Copyright D.I.works| D.I.blog is the one which provides A to Z about programming
-    </footer>
+
 </body>
 
 </html>

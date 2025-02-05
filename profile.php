@@ -1,19 +1,5 @@
-<?php
-    session_start();
-    if(!isset($_SESSION['user'])){
-        echo "ログインしてください";
-        echo' <form action="login.php">
-                    <input type="submit" class="button1" value="ログイン">
-                </form>';
-    exit();
-}
 
 
-if($_SESSION['user']==0){
-   echo "権限がありません";
-    exit();
-}
-?>
 
 
 <!doctype html>
@@ -21,7 +7,7 @@ if($_SESSION['user']==0){
 
 <head>
     <meta charset="utf-8">
-    <title>アカウント更新画面</title>
+    <title>プロフィール画面</title>
     <script type="text/javascript">
         function check() {
             if (form.family_name.value == "") {
@@ -42,8 +28,8 @@ if($_SESSION['user']==0){
         }
 
         function check3() {
-            if (form.family_name_kana.value == "") {
-                document.getElementById("family_name_kana_msg").innerHTML = "カナ（姓）を入力してください。";
+            if (form.nick_name.value == "") {
+                document.getElementById("nick_name_msg").innerHTML = "ニックネームを入力してください。";
                 return false;
             } else {
                 return true;
@@ -51,15 +37,6 @@ if($_SESSION['user']==0){
         }
 
         function check4() {
-            if (form.last_name_kana.value == "") {
-                document.getElementById("last_name_kana_msg").innerHTML = "カナ（名）を入力してください。";
-                return false;
-            } else {
-                return true;
-            }
-        }
-
-        function check5() {
             if (form.mail.value == "") {
                 document.getElementById("mail_msg").innerHTML = "メールアドレスを入力してください。";
                 return false;
@@ -68,7 +45,7 @@ if($_SESSION['user']==0){
             }
         }
 
-        function check6() {
+        function check5() {
             if (form.password.value == "") {
                 document.getElementById("password_msg").innerHTML = "パスワードを入力してください。";
                 return false;
@@ -77,68 +54,20 @@ if($_SESSION['user']==0){
             }
         }
 
-        function check7() {
-            if (form.postal_code.value == "") {
-                document.getElementById("postal_code_msg").innerHTML = "郵便番号を入力してください。";
-                return false;
-            } else {
-                return true;
-            }
-        }
-
-        function check8() {
-            if (form.prefecture.value == "") {
-                document.getElementById("prefecture_msg").innerHTML = "住所（都道府県）を選択してください。";
-                return false;
-            } else {
-                return true;
-            }
-        }
-
-        function check9() {
-            if (form.address_1.value == "") {
-                document.getElementById("address_1_msg").innerHTML = "住所（市区町村）を入力してください。";
-                return false;
-            } else {
-                return true;
-            }
-        }
-
-        function check10() {
-            if (form.address_2.value == "") {
-                document.getElementById("address_2_msg").innerHTML = "住所（番地）を入力してください。";
-                return false;
-            } else {
-                return true;
-            }
-        }
-
-        function check11() {
-            if (form.authority.value == "") {
-                document.getElementById("authority_msg").innerHTML = "アカウント権限を選択してください。";
-                return false;
-            } else {
-                return true;
-            }
-        }
-
     </script>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    
+    <link rel="stylesheet" type="text/css" href="regist.css">
 </head>
 
 <body>
     <header>
-        <img src="img/diblog_logo.jpg">
+        <img src="img/library.png">
         <div class="content">
             <ul class="menu">
-                <li><a href="index.php">トップ</a></li>
-                <li>プロフィール</li>
-                <li>D.I.Blogについて</li>
-                <li>登録フォーム</li>
-                <li>問い合わせ</li>
-                <li>その他</li>
-                <li> <a href="regist.php">アカウント登録</a></li>
-                <li> <a href="list.php">アカウント一覧</a></li>
+                <li><a href="index.php">TOPページ</a></li>
+                <li> <a href="profile.php">プロフィール</a></li>
+                <li> <a href="newbook.php">蔵書登録</a></li>
+                <li> <a href="search.php">蔵書検索</a></li>
                   <li><a href="login.php">ログイン</a></li>
                 <li><a href="logout.php">ログアウト</a></li>
             </ul>
@@ -146,14 +75,18 @@ if($_SESSION['user']==0){
     </header>
 
     <main>
-        <h1>アカウント更新画面</h1>
+       <div class="top_image">
+        <h1>プロフィール</h1>
         <?php
         //PDO
         mb_internal_encoding("utf8");
-        $pdo=new PDO("mysql:dbname=practice;host=localhost;","root","");
-        $stmt=$pdo->query("select*from login_user_transaction where id = '".$_POST['resultid1']."'");
+        $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
+        if(!empty($_POST)) {
+        $stmt=$pdo->query("select*from login_user where id = '".$_POST['resultid1']."'");
+        $row=$stmt->fetch();
+        }
         ?>
-        <?php $row=$stmt->fetch() ?>
+        
         <table>
             <form method="post" class="main" action="update_confirm.php" 　name="form" id="form" onsubmit="return !! (check() & check2() & check3()& check4()& check5()& check7()& check8()& check9()& check10()& check10())">
 
@@ -175,19 +108,11 @@ if($_SESSION['user']==0){
 
 
                 <div>
-                    <label>カナ（姓）</label>
+                    <label>ニックネーム</label>
                     <br>
-                    <input type="text" pattern="[\u30A1-\u30F6]*" class="text" size="35" maxlength="10" id="family_name_kana" name="family_name_kana" value="<?php if(!empty($_POST['family_name_kana'])){echo $_POST['family_name_kana'];}else{echo $row['family_name_kana'];}?>">
+                    <input type="text" pattern="[\u30A1-\u30F6]*" class="text" size="35" maxlength="10" id="nick_name" name="nick_name" value="<?php if(!empty($_POST['nick_name'])){echo $_POST['nick_name'];}else{echo $row['nick_name'];}?>">
                 </div>
-                <p style="color:#FF0000" id="family_name_kana_msg"></p>
-
-
-                <div>
-                    <label>カナ（名）</label>
-                    <br>
-                    <input type="text" pattern="[\u30A1-\u30F6]*" 　inputmode="katakana" class="text" size="35" maxlength="10" id="last_name_kana" name="last_name_kana" value="<?php if(!empty($_POST['last_name_kana'])){echo $_POST['last_name_kana'];}else{echo $row['last_name_kana'];}?>">
-                </div>
-                <p style="color:#FF0000" id="last_name_kana_msg"></p>
+                <p style="color:#FF0000" id="nick_name_msg"></p>
 
                 <div>
                     <label>メールアドレス</label>
@@ -212,6 +137,10 @@ if($_SESSION['user']==0){
 
                     <input type="radio" id="1" name="gender" value="1" <?php if(empty($_POST['gender'])) { if($row['gender']== "1" ){ echo 'checked';}} else{ if($_POST['gender']== "1" ){ echo 'checked';}}?> />
                     <label for="1">女</label>
+                    
+                     <input type="radio" id="2" name="gender" value="2" <?php if(empty($_POST['gender'])) { if($row['gender']== "2" ){ echo 'checked';}} else{ if($_POST['gender']== "2" ){ echo 'checked';}}?> />
+                    <label for="2">未選択</label>
+
                 </div>
 
 
@@ -294,16 +223,7 @@ if($_SESSION['user']==0){
                 </div>
                 <p style="color:#FF0000" id="address_2_msg"></p>
 
-                <div>
-                    <label>アカウント権限</label>
-                    <br>
-                    <select class="dropdown" id="authority" name="authority">
-                        <option value="0">一般</option>
-                        <option value="1" <?php if($row['authority'] === "1" ){ echo 'selected'; } ?>>管理者</option>
-                    </select>
-                </div>
-                <p style="color:#FF0000" id="authority_msg"></p>
-
+             
                 <div>
                     <input type='hidden' value='<?php echo $_POST["resultid1"];?>' name='resultid1' id='resultid1'>
                     <input type="submit" class="submit" value="確認する">
@@ -315,11 +235,9 @@ if($_SESSION['user']==0){
 
 
         </table>
+        </div>
     </main>
 
-    <footer>
-        Copyright D.I.works| D.I.blog is the one which provides A to Z about programming
-    </footer>
 </body>
 
 </html>

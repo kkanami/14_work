@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>新規登録画面</title>
+    <title>アカウント登録画面</title>
 
     <script type="text/javascript">
         function check() {
@@ -26,8 +26,8 @@
         }
 
         function check3() {
-            if (form.family_name_kana.value == "") {
-                document.getElementById("family_name_kana_msg").innerHTML = "ニックネームを入力してください。";
+            if (form.nick_name.value == "") {
+                document.getElementById("nick_name_msg").innerHTML = "ニックネームを入力してください。";
                 return false;
             } else {
                 return true;
@@ -60,9 +60,8 @@
 
 <body>
 
-    <h1>新規登録</h1>
     <div class="top_image">
-
+        <h1>アカウント登録</h1>
         <form method="post" class="main" action="regist_confirm.php" 　name="form" id="form" onsubmit="return !! (check() & check2() & check3()& check4()& check5())">
 
             <div>
@@ -83,14 +82,14 @@
             <div>
                 <label>ニックネーム</label>
                 <br>
-                <input type="text" class="text" size="35" maxlength="10" id="family_name_kana" name="family_name_kana" value="<?php if(!empty($_POST['family_name_kana'])){echo $_POST['family_name_kana'];}?>">
+                <input type="text" class="text" size="35" maxlength="10" id="nick_name" name="nick_name" value="<?php if(!empty($_POST['nick_name'])){echo $_POST['nick_name'];}?>">
             </div>
-            <p id="family_name_kana_msg"></p>
+            <p id="nick_name_msg"></p>
 
             <div>
                 <label>メールアドレス</label>
                 <br>
-                <input type="email" class="text" size="80" maxlength="100" id="mail" name="mail" value="<?php if(!empty($_POST['mail'])){echo $_POST['mail'];}?>">
+                <input type="email" class="text" size="60" maxlength="100" id="mail" name="mail" value="<?php if(!empty($_POST['mail'])){echo $_POST['mail'];}?>">
             </div>
             <p id="mail_msg"></p>
 
@@ -104,11 +103,14 @@
             <div>
                 <label>性別</label>
                 <br>
-                <input type="radio" id="0" name="gender" value="0" <?php if(empty($_POST['gender']) || $_POST['gender']=== "0" ){ echo 'checked';} ?> />
+                <input type="radio" id="0" name="gender" value="0" <?php if(!empty($_POST['gender']) && $_POST['gender']=== "0" ){ echo 'checked';} ?> />
                 <label for="0">男</label>
 
                 <input type="radio" id="1" name="gender" value="1" <?php if(!empty($_POST['gender']) && $_POST['gender']=== "1" ){ echo 'checked';} ?> />
                 <label for="1">女</label>
+
+                <input type="radio" id="2" name="gender" value="2" <?php if(empty($_POST['gender']) || $_POST['gender']=== "2" ){ echo 'checked';} ?> />
+                <label for="2">未選択</label>
             </div>
 
 
@@ -187,7 +189,7 @@
             <div>
                 <label>住所（番地）</label>
                 <br>
-                <input type="text" class="text" pattern="^[　ー０-９ぁ-んァ-ヶｱ-ﾝﾞﾟ一-龠ー]*$" size="80" maxlength="100" id="address_2" name="address_2" value="<?php if(!empty($_POST['address_2'])){echo $_POST['address_2'];}?>">
+                <input type="text" class="text" pattern="^[　ー０-９ぁ-んァ-ヶｱ-ﾝﾞﾟ一-龠ー]*$" size="60" maxlength="100" id="address_2" name="address_2" value="<?php if(!empty($_POST['address_2'])){echo $_POST['address_2'];}?>">
             </div>
             <p id="address_2_msg"></p>
 
@@ -197,14 +199,14 @@
 
         </form>
 
+
+
+        <br>
+
+        <form class="back" action="index.php">
+            <input type="submit" class="back" value="TOPページへ戻る">
+        </form>
     </div>
-
-    <br>
-
-    <form class="back" action="index.php">
-        <input type="submit" class="back" value="TOPページへ戻る">
-    </form>
-
 
 </body>
 
