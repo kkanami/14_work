@@ -12,6 +12,7 @@ $stmt->bindvalue(":nick_name",$_POST['nick_name'],PDO::PARAM_STR);
 $stmt->bindvalue(":mail",$_POST['mail'],PDO::PARAM_STR);
 $stmt->bindvalue(":password",$_POST['password'],PDO::PARAM_STR);
 $gender=(int) $_POST['gender'];
+$stmt->bindvalue(":gender",$gender,PDO::PARAM_INT);
 $stmt->bindvalue(":postal_code",$_POST['postal_code'],PDO::PARAM_STR);
 $stmt->bindvalue(":prefecture",$_POST['prefecture'],PDO::PARAM_STR);
 $stmt->bindvalue(":address_1",$_POST['address_1'],PDO::PARAM_STR);

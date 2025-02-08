@@ -30,9 +30,7 @@
 
         <div class="content">
             <ul class="menu">
-                <li>
-                    <h1>Collection Of Book</h1>
-                </li>
+                <li><h2>Collection Of Book</h2></li>
                 <li><a href="mypage.php">マイページ</a></li>
                 <li> <a href="profile.php">プロフィール</a></li>
                 <li> <a href="newbook.php">蔵書登録</a></li>
@@ -78,7 +76,7 @@
             <div>
                 <label>出版日</label>
                 <br>
-                <input type="epublication_date" pattern="^[0-9]{4}/(0[1-9]|1[0-2])/(0[1-9]|[12][0-9]|3[01])$" class="text" size="10" maxlength="10" id="publication_date" name="publication_date" placeholder="yyyy/mm/dd" value="<?php if(!empty($_POST['publication_date'])){echo $_POST['publication_date'];}?>">
+                <input type="text" pattern="^[0-9]{4}/(0[1-9]|1[0-2])/(0[1-9]|[12][0-9]|3[01])$" class="text" size="10" maxlength="10" id="publication_date" name="publication_date" placeholder="yyyy/mm/dd" value="<?php if(!empty($_POST['publication_date'])){echo $_POST['publication_date'];}?>">
             </div>
 
 

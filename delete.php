@@ -1,170 +1,104 @@
-<?php
-    session_start();
-    if(!isset($_SESSION['user'])){
-        echo "ログインしてください";
-        echo' <form action="login.php">
-                    <input type="submit" class="button1" value="ログイン">
-                </form>';
-    exit();
-}
-
-
-if($_SESSION['user']==0){
-   echo "権限がありません";
-    exit();
-}
-?>
-
-
-
 <!doctype html>
 <html lang="ja">
 
 <head>
     <meta charset="utf-8">
-    <title>アカウント削除画面</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>蔵書削除画面</title>
+    <link rel="stylesheet" type="text/css" href="regist.css">
 </head>
 
 <body>
     <header>
-        <img src="img/diblog_logo.jpg">
+        <img src="img/library.png">
         <div class="content">
             <ul class="menu">
-                <li><a href="index.php">トップ</a></li>
-                <li>プロフィール</li>
-                <li>D.I.Blogについて</li>
-                <li>登録フォーム</li>
-                <li>問い合わせ</li>
-                <li>その他</li>
-                <li> <a href="regist.php">アカウント登録</a></li>
-                <li> <a href="list.php">アカウント一覧</a></li>
+                <li>
+                    <h2>Collection Of Book</h2>
+                </li>
+                <li><a href="mypage.php">マイページ</a></li>
+                <li> <a href="profile.php">プロフィール</a></li>
+                <li> <a href="newbook.php">蔵書登録</a></li>
+                <li> <a href="search.php">蔵書検索</a></li>
                 <li><a href="login.php">ログイン</a></li>
                 <li><a href="logout.php">ログアウト</a></li>
             </ul>
         </div>
     </header>
-
     <main>
-        <h1>アカウント削除画面</h1>
+        <h1>蔵書削除画面</h1>
 
 
 
         <?php
         //PDO
         mb_internal_encoding("utf8");
-        $pdo=new PDO("mysql:dbname=practice;host=localhost;","root","");
-        $stmt=$pdo->query("select*from login_user_transaction where id = '".$_POST['resultid2']."'");
-        ?>
-        <?php $row=$stmt->fetch() ?>
+        $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
+          if(!empty($_POST['resultid2'])){
+        $stmt=$pdo->query("select*from collection_book where id = '".$_POST['resultid2']."'");
+        $row=$stmt->fetch(); }?>
+
         <table>
             <tr>
-                <th>名前（姓）
+                <th>タイトル
                 </th>
                 <td>
-                    <?php echo $row['family_name']; ?></td>
+                    <?php  if(isset($row['title'])){echo $row['title']; }?></td>
             </tr>
 
             <tr>
-                <th>名前（名）
+                <th>著書
                 </th>
                 <td>
-                    <?php echo $row['last_name']; ?>
+                    <?php if(isset($row['author'])){echo $row['author']; }?>
                 </td>
             </tr>
 
             <tr>
-                <th>カナ（姓）
+                <th>ISBN/ISSN
                 </th>
                 <td>
-                    <?php echo $row['family_name_kana']; ?>
+                    <?php if(isset($row['isbn'])){echo $row['isbn']; } ?>
                 </td>
             </tr>
 
             <tr>
-                <th>カナ（名）
+                <th>出版者
                 </th>
                 <td>
-                    <?php echo $row['last_name_kana']; ?>
+                    <?php if(isset($row['publisher'])){echo $row['publisher']; } ?>
                 </td>
             </tr>
 
             <tr>
-                <th>メールアドレス
+                <th>出版日
                 </th>
                 <td>
-                    <?php echo $row['mail']; ?>
+                    <?php if(isset($row['publication_date'])){echo $row['publication_date']; } ?>
                 </td>
             </tr>
 
             <tr>
-                <th>パスワード
+                <th>未読/既読
                 </th>
                 <td>
-                    <?php if(!empty($row['password'])){
-                echo "セキリュティのため表示できません";} ?>
-                </td>
-            </tr>
-
-
-            <tr>
-                <th>性別
-                </th>
-                <td>
-                    <?php
-            $option=['0'=>'男',
-                    '1'=>'女'];
-            $gender=$row['gender'] ;
-            $genderdisp=$option[$row['gender']];
-             echo $genderdisp ?>
+                    <?php if(!empty($_POST['unread'])){
+            $option=['0'=>'未読',
+                    '1'=>'既読'];
+            $unread=$row['unread'] ;
+            $unreaddisp=$option[$row['unread']];
+             echo $unreaddisp;} ?>
                 </td>
             </tr>
 
             <tr>
-                <th>郵便番号
+                <th>memo
                 </th>
                 <td>
-                    <?php echo $row['postal_code']; ?>
+                    <?phpif(isset($row['memo'])){echo $row['memo']; } ?>
                 </td>
             </tr>
 
 
-            <tr>
-                <th>住所（都道府県）
-                </th>
-                <td>
-                    <?php echo $row['prefecture']; ?>
-                </td>
-            </tr>
-
-            <tr>
-                <th>住所（市区町村）
-                </th>
-                <td>
-                    <?php echo $row['address_1']; ?>
-                </td>
-            </tr>
-
-            <tr>
-                <th>住所（番地）
-                </th>
-                <td>
-                    <?php echo $row['address_2']; ?>
-                </td>
-            </tr>
-
-            <tr>
-                <th>アカウント権限
-                </th>
-                <td>
-                    <?php
-            $option=['0'=>'一般',
-                    '1'=>'管理者'];
-            $authority=$row['authority'] ;
-            $authoritydisp=$option[$row['authority']];
-            echo $authoritydisp ?>
-                </td>
-            </tr>
 
         </table>
 
@@ -176,9 +110,7 @@ if($_SESSION['user']==0){
 
     </main>
 
-    <footer>
-        Copyright D.I.works| D.I.blog is the one which provides A to Z about programming
-    </footer>
+
 </body>
 
 </html>

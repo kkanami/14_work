@@ -45,7 +45,7 @@
 
             <p>性別
                 <br>
-                <?php if(!empty($_POST['password'])){
+                <?php if(!empty($_POST['gender'])){
             $option=['0'=>'男',
                     '1'=>'女',
                     '2'=>'未選択'];

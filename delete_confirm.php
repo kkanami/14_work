@@ -3,23 +3,22 @@
 
 <head>
     <meta charset="utf-8">
-    <title>アカウント削除確認画面</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>蔵書削除確認画面</title>
+    <link rel="stylesheet" type="text/css" href="regist.css">
 </head>
 
 <body>
     <header>
-        <img src="img/diblog_logo.jpg">
+        <img src="img/library.png">
         <div class="content">
             <ul class="menu">
-                <li><a href="index.php">トップ</a></li>
-                <li>プロフィール</li>
-                <li>D.I.Blogについて</li>
-                <li>登録フォーム</li>
-                <li>問い合わせ</li>
-                <li>その他</li>
-                <li> <a href="regist.php">アカウント登録</a></li>
-                <li> <a href="list.php">アカウント一覧</a></li>
+                <li>
+                    <h2>Collection Of Book</h2>
+                </li>
+                <li><a href="mypage.php">マイページ</a></li>
+                <li> <a href="profile.php">プロフィール</a></li>
+                <li> <a href="newbook.php">蔵書登録</a></li>
+                <li> <a href="search.php">蔵書検索</a></li>
                 <li><a href="login.php">ログイン</a></li>
                 <li><a href="logout.php">ログアウト</a></li>
             </ul>
@@ -27,32 +26,32 @@
     </header>
 
     <main>
-        <h1>アカウント削除確認画面</h1>
+        <h1>蔵書削除確認画面</h1>
+        <div class="top_image">
+            <p><span>本当に削除してよろしいですか？</span></p>
 
-        <p><span>本当に削除してよろしいですか？</span></p>
+            <table>
+                <tr>
 
-        <table>
-            <tr>
-                <td>
-                    <form action="delete.php" method="post">
-                        <input type='hidden' value='<?php echo $_POST["resultid2"];?>' name='resultid2' id='resultid2'>
-                        <input type="submit" class="button1" value="前に戻る">
-                    </form>
-                </td>
-                <td>
-                    <form action="delete_complete.php" method="post">
-                        <input type='hidden' value='<?php echo $_POST["resultid2"];?>' name='resultid2' id='resultid2'>
-                        <input type="submit" class="button1" value="削除する">
-                    </form>
-                </td>
-            </tr>
-        </table>
+                    <td>
+                        <form action="delete.php" method="post">
+                            <input type='hidden' value='<?php echo $_POST["resultid2"];?>' name='resultid2' id='resultid2'>
+                            <input type="submit" class="button1" value="前に戻る">
+                        </form>
+                    </td>
+                    <td>
+                        <form action="delete_complete.php" method="post">
+                            <input type='hidden' value='<?php echo $_POST["resultid2"];?>' name='resultid2' id='resultid2'>
+                            <input type="submit" class="button1" value="削除する">
+                        </form>
+                    </td>
 
+                </tr>
+            </table>
+        </div>
     </main>
 
-    <footer>
-        Copyright D.I.works| D.I.blog is the one which provides A to Z about programming
-    </footer>
+
 </body>
 
 </html>
