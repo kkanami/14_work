@@ -26,7 +26,7 @@
                 <?php if(!empty($_POST['last_name'])){echo $_POST['last_name'];} ?>
             </p>
 
-            <p>カナ（姓）
+            <p>ニックネーム
                 <br>
                 <?php if(!empty($_POST['nick_name'])){echo $_POST['nick_name'];} ?>
             </p>

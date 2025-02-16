@@ -104,7 +104,7 @@
                 <label>性別</label>
                 <br>
                 <input type="radio" id="0" name="gender" value="0" <?php if(!empty($_POST['gender']) && $_POST['gender']=== "0" ){ echo 'checked';} ?> />
-                <label for="0">男</label>
+                <label for="2">男</label>
 
                 <input type="radio" id="1" name="gender" value="1" <?php if(!empty($_POST['gender']) && $_POST['gender']=== "1" ){ echo 'checked';} ?> />
                 <label for="1">女</label>

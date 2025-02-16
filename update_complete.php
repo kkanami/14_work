@@ -43,7 +43,7 @@
      
             
         if(!empty($_POST['title'])) {
-            $sql("update collection_book set title= :title , author= :author , isbn= :isbn , publisher= :publisher , publication_date= :publication_date , unread= :unread , memo= :memo , update_time= now() where id = '".$_POST['resultid1']."'");
+            $sql("update collection_book set title= :title , author= :author , isbn= :isbn , publisher= :publisher , publication_date= :publication_date , unread= :unread , memo= :memo , update_time= now() where id = '".$_SESSION['user']."'");
 
             $stmt=$pdo->exec($sql);
 
@@ -67,10 +67,10 @@
         
         ?>
 
-        <div class="confirm">
+        <div>
             <p><span>更新完了しました</span></p>
             <form action="mypage.php">
-                <input type="submit" class="button1" value="TOPページへ戻る">
+                <input type="submit" class="button1" value="マイページへ戻る">
             </form>
         </div>
 
@@ -79,9 +79,6 @@
 
     </main>
 
-    <footer>
-        Copyright D.I.works| D.I.blog is the one which provides A to Z about programming
-    </footer>
 </body>
 
 </html>

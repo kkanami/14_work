@@ -45,14 +45,7 @@
             }
         }
 
-        function check5() {
-            if (form.password.value == "") {
-                document.getElementById("password_msg").innerHTML = "パスワードを入力してください。";
-                return false;
-            } else {
-                return true;
-            }
-        }
+       
 
     </script>
     
@@ -60,15 +53,21 @@
 </head>
 
 <body>
-    <header>
-        <img src="img/library.png">
+      <header>
+        <div class="img_icon">
+            <img src="img/library.png">
+        </div>
+        
         <div class="content">
             <ul class="menu">
-                <li><a href="index.php">TOPページ</a></li>
+                <li>
+                    <h1>Collection Of Book</h1>
+                </li>
+                <li><a href="mypage.php">マイページ</a></li>
                 <li> <a href="profile.php">プロフィール</a></li>
                 <li> <a href="newbook.php">蔵書登録</a></li>
                 <li> <a href="search.php">蔵書検索</a></li>
-                  <li><a href="login.php">ログイン</a></li>
+                <li><a href="login.php">ログイン</a></li>
                 <li><a href="logout.php">ログアウト</a></li>
             </ul>
         </div>
@@ -81,14 +80,14 @@
         //PDO
         mb_internal_encoding("utf8");
         $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
-        if(!empty($_POST)) {
-        $stmt=$pdo->query("select*from login_user where id = '".$_POST['resultid1']."'");
+        if(empty($_POST)) {
+        $stmt=$pdo->query("select*from login_user where id = 5");
         $row=$stmt->fetch();
         }
         ?>
         
         <table>
-            <form method="post" class="main" action="update_confirm.php" 　name="form" id="form" onsubmit="return !! (check() & check2() & check3()& check4()& check5()& check7()& check8()& check9()& check10()& check10())">
+            <form method="post" class="main" action="update_confirm.php" 　name="form" id="form" onsubmit="return !! (check() & check2() & check3()& check4())">
 
                 <div>
                     <label>名前（姓）</label>
@@ -110,7 +109,7 @@
                 <div>
                     <label>ニックネーム</label>
                     <br>
-                    <input type="text" pattern="[\u30A1-\u30F6]*" class="text" size="35" maxlength="10" id="nick_name" name="nick_name" value="<?php if(!empty($_POST['nick_name'])){echo $_POST['nick_name'];}else{echo $row['nick_name'];}?>">
+                    <input type="text" class="text" size="35" maxlength="10" id="nick_name" name="nick_name" value="<?php if(!empty($_POST['nick_name'])){echo $_POST['nick_name'];}else{echo $row['nick_name'];}?>">
                 </div>
                 <p style="color:#FF0000" id="nick_name_msg"></p>
 

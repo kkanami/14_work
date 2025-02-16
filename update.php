@@ -9,25 +9,28 @@
     <script type="text/javascript">
         function check() {
             if (form.title.value == "") {
-                document.getElementById("title_msg").innerHTML = "名前（姓）を入力してください。";
+                document.getElementById("title_msg").innerHTML = "タイトルを入力してください。";
                 return false;
             } else {
                 return true;
             }
         }
-
-
     </script>
-    <link rel="stylesheet" type="text/css" href="resist.css">
+    <link rel="stylesheet" type="text/css" href="regist.css">
 </head>
 
 <body>
    
-    <header>
-        <img src="img/library.png">
+       <header>
+        <div class="img_icon">
+            <img src="img/library.png">
+        </div>
+        
         <div class="content">
             <ul class="menu">
-               <li><h2>Collection Of Book</h2></li>
+                <li>
+                    <h1>Collection Of Book</h1>
+                </li>
                 <li><a href="mypage.php">マイページ</a></li>
                 <li> <a href="profile.php">プロフィール</a></li>
                 <li> <a href="newbook.php">蔵書登録</a></li>
@@ -38,15 +41,16 @@
         </div>
     </header>
 
+
     <main>
         <h1>蔵書更新画面</h1>
         <?php
         //PDO
         mb_internal_encoding("utf8");
         $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
-        $stmt=$pdo->query("select*from collection_book where id = '".$_POST['resultid1']."'");
+        $stmt=$pdo->query("select*from collection_book where id = '". $_SESSION['user']."'");
+        $row=$stmt->fetch() 
         ?>
-        <?php $row=$stmt->fetch() ?>
         <table>
             <form method="post" class="main" action="update_confirm.php" 　name="form" id="form" onsubmit="check()">
 

@@ -36,7 +36,7 @@
         mb_internal_encoding("utf8");
         $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
         if(!empty($_POST['resultid1'])){
-        $stmt=$pdo->query("select*from collection_book where id = '".$_POST['resultid1']."'");
+        $stmt=$pdo->query("select*from collection_book where id = '". $_SESSION['user']."'");
         $row=$stmt->fetch();
         }
         ?>

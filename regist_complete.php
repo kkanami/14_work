@@ -10,7 +10,7 @@ $stmt->bindValue(":family_name",$_POST['family_name'],PDO::PARAM_STR);
 $stmt->bindvalue(":last_name",$_POST['last_name'],PDO::PARAM_STR);
 $stmt->bindvalue(":nick_name",$_POST['nick_name'],PDO::PARAM_STR);
 $stmt->bindvalue(":mail",$_POST['mail'],PDO::PARAM_STR);
-$stmt->bindvalue(":password",$_POST['password'],PDO::PARAM_STR);
+$stmt->bindvalue(":password",password_hash($_POST['password'],PASSWORD_DEFAULT),PDO::PARAM_STR);
 $gender=(int) $_POST['gender'];
 $stmt->bindvalue(":gender",$gender,PDO::PARAM_INT);
 $stmt->bindvalue(":postal_code",$_POST['postal_code'],PDO::PARAM_STR);
