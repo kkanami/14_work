@@ -2,6 +2,7 @@
 <?php
     mb_internal_encoding("utf8");
     session_start();
+  
 ?>
 <html lang="ja">
 
@@ -38,6 +39,14 @@
             <h1>Collection Of Book</h1>
             <p>読書記録アプリケーション</p>
 
+            <div class="mypage">
+                <?php
+              if(!empty($_SESSION['user'])) {
+                echo "ログイン済です<a href=mypage.php>▶マイページに戻る</a>";
+              }
+            ?>
+            </div>
+
             <form method="post" class="login" action="index.php" name="login" id="login" onsubmit="return !! (check1()& check2())">
 
                 <div>
@@ -55,19 +64,18 @@
                 <p style="color:#FF0000" id="password_msg"></p>
 
                 <div>
-                    <input type="submit" class="submit" value="ログイン">
+                    <input type="submit" class="button" value="ログイン">
                 </div>
             </form>
+            <a href="regist.php">新規登録</a>
         </div>
 
-        <a href="regist.php">新規登録</a>
-<?php
 
-    if(!empty($_SESSION['user'])) {
-        echo "ログイン済です<br>";
-        echo "<a href=mypage.php>マイページに戻る</a>";
-        exit;
-    }
+
+
+        <?php
+
+
     if((empty($_POST['mail'])) || (empty($_POST['password']))) {
         exit;
     }
@@ -90,10 +98,8 @@
             $_SESSION['user']=$row['id'];
             header("Location: mypage.php");
         }else {
-            echo"'".$_POST['password']."'";
-            echo"'".$row['password']."'";
-            echo"'".$row['id']."'";
-            echo"'".$row['delete_flag']."'";
+            echo"ログインに失敗しました。";
+
         }
 
     }catch(Exception $e){

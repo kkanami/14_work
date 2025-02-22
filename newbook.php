@@ -1,3 +1,22 @@
+<?php
+    mb_internal_encoding("utf8");
+    session_start();
+    $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
+    $stmt=$pdo->query("select*from login_user where id = '". $_SESSION['user']."'");
+    $row=$stmt->fetch();
+    
+
+    if(isset($_SESSION['user'])){
+        echo  "<p>". $row['nick_name']."さん"."</p>";
+    }else{
+        echo "ログインしてください";
+        echo' <form action="index.php">
+                    <input type="submit" class="button1" value="ログイン">
+                </form>';
+    exit();
+}
+
+?>
 <!doctype html>
 <html lang="ja">
 
@@ -23,11 +42,11 @@
 
 
 <body>
-    <header>
+   <header>
         <div class="img_icon">
-            <img src="img/library.png">
+             <a href="index.php"><img src="img/library.png" alt="TOPページへ"></a>
         </div>
-
+     
         <div class="content">
             <ul class="menu">
                 <li><h2>Collection Of Book</h2></li>
@@ -35,11 +54,12 @@
                 <li> <a href="profile.php">プロフィール</a></li>
                 <li> <a href="newbook.php">蔵書登録</a></li>
                 <li> <a href="search.php">蔵書検索</a></li>
-                <li><a href="login.php">ログイン</a></li>
+                <li><a href="index.php">ログイン</a></li>
                 <li><a href="logout.php">ログアウト</a></li>
             </ul>
         </div>
     </header>
+
     <div class="top_image">
         <h1>蔵書登録</h1>
         <form method="post" class="main" action="newbook_confirm.php" 　name="form" id="form" onsubmit="check()">
@@ -111,8 +131,8 @@
     </div>
     <br>
 
-    <form class="back" action="index.php">
-        <input type="submit" class="back" value="TOPページへ戻る">
+    <form class="back" action="mypage.php">
+        <input type="submit" class="back" value="マイページへ戻る">
     </form>
 
 

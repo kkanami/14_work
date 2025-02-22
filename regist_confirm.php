@@ -46,9 +46,9 @@
             <p>性別
                 <br>
                 <?php if(!empty($_POST['gender'])){
-            $option=['0'=>'男',
-                    '1'=>'女',
-                    '2'=>'未選択'];
+            $option=['1'=>'男',
+                    '2'=>'女',
+                    '3'=>'未選択'];
             $gender=$_POST['gender'] ;
             $genderdisp=$option[$_POST['gender']];
              echo $genderdisp; }?>
@@ -76,9 +76,24 @@
                 <?php if(!empty($_POST['address_2'])){echo $_POST['address_2'];} ?>
             </p>
             <div class="button_container">
-                <!--以下は、regist.htmlから引き渡されたpostをここで再度箱に格納し、complete.phpに引き渡す。type=hiddenにすることで非表示となる。-->
+            
+              <form method="POST" action="regist.php">
+                    <input type="submit" class="button" value="前に戻る">
+                    <input type="hidden" value="<?php if(!empty($_POST['family_name'])){echo $_POST['family_name'];}?>" name="family_name">
+                    <input type="hidden" value="<?php if(!empty($_POST['last_name'])){echo $_POST['last_name'];}?>" name="last_name">
+                    <input type="hidden" value="<?php if(!empty($_POST['nick_name'])){echo $_POST['nick_name'];}?>" name="nick_name">
+                    <input type="hidden" value="<?php if(!empty($_POST['mail'])){echo $_POST['mail'];}?>" name="mail">
+                    <input type="hidden" value="<?php if(!empty($_POST['password'])){echo $_POST['password'];}?>" name="password">
+                    <input type="hidden" value="<?php if(!empty($_POST['gender'])){echo $_POST['gender'];}?>" name="gender">
+                    <input type="hidden" value="<?php if(!empty($_POST['postal_code'])){echo $_POST['postal_code'];}?>" name="postal_code">
+                    <input type="hidden" value="<?php if(!empty($_POST['prefecture'])){echo $_POST['prefecture'];}?>" name="prefecture">
+                    <input type="hidden" value="<?php if(!empty($_POST['address_1'])){echo $_POST['address_1'];}?>" name="address_1">
+                    <input type="hidden" value="<?php if(!empty($_POST['address_2'])){echo $_POST['address_2'];}?>" name="address_2">
+
+                </form>
+             
                 <form action="regist_complete.php" method="post">
-                    <input type="submit" class="button2" value="登録する">
+                    <input type="submit" class="button" value="登録する">
                     <input type="hidden" value="<?php if(!empty($_POST['family_name'])){echo $_POST['family_name'];}?>" name="family_name">
                     <input type="hidden" value="<?php if(!empty($_POST['last_name'])){echo $_POST['last_name'];}?>" name="last_name">
                     <input type="hidden" value="<?php if(!empty($_POST['nick_name'])){echo $_POST['nick_name'];}?>" name="nick_name">
@@ -91,21 +106,8 @@
                     <input type="hidden" value="<?php if(!empty($_POST['address_2'])){echo $_POST['address_2'];}?>" name="address_2">
 
                 </form>
-                <!--以下は入力を前ページに戻す-->
-                <form method="POST" action="regist.php">
-                    <input type="submit" class="button2" value="前に戻る">
-                    <input type="hidden" value="<?php if(!empty($_POST['family_name'])){echo $_POST['family_name'];}?>" name="family_name">
-                    <input type="hidden" value="<?php if(!empty($_POST['last_name'])){echo $_POST['last_name'];}?>" name="last_name">
-                    <input type="hidden" value="<?php if(!empty($_POST['nick_name'])){echo $_POST['nick_name'];}?>" name="nick_name">
-                    <input type="hidden" value="<?php if(!empty($_POST['mail'])){echo $_POST['mail'];}?>" name="mail">
-                    <input type="hidden" value="<?php if(!empty($_POST['password'])){echo $_POST['password'];}?>" name="password">
-                    <input type="hidden" value="<?php if(!empty($_POST['gender'])){echo $_POST['gender'];}?>" name="gender">
-                    <input type="hidden" value="<?php if(!empty($_POST['postal_code'])){echo $_POST['postal_code'];}?>" name="postal_code">
-                    <input type="hidden" value="<?php if(!empty($_POST['prefecture'])){echo $_POST['prefecture'];}?>" name="prefecture">
-                    <input type="hidden" value="<?php if(!empty($_POST['address_1'])){echo $_POST['address_1'];}?>" name="address_1">
-                    <input type="hidden" value="<?php if(!empty($_POST['address_2'])){echo $_POST['address_2'];}?>" name="address_2">
-
-                </form>
+              
+              
 
             </div>
         </div>

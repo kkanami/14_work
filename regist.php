@@ -103,13 +103,13 @@
             <div>
                 <label>性別</label>
                 <br>
-                <input type="radio" id="0" name="gender" value="0" <?php if(!empty($_POST['gender']) && $_POST['gender']=== "0" ){ echo 'checked';} ?> />
+                <input type="radio" id="1" name="gender" value="1" <?php if(!empty($_POST['gender']) && $_POST['gender']=== "1" ){ echo 'checked';} ?> />
                 <label for="2">男</label>
 
-                <input type="radio" id="1" name="gender" value="1" <?php if(!empty($_POST['gender']) && $_POST['gender']=== "1" ){ echo 'checked';} ?> />
+                <input type="radio" id="2" name="gender" value="2" <?php if(!empty($_POST['gender']) && $_POST['gender']=== "2" ){ echo 'checked';} ?> />
                 <label for="1">女</label>
 
-                <input type="radio" id="2" name="gender" value="2" <?php if(empty($_POST['gender']) || $_POST['gender']=== "2" ){ echo 'checked';} ?> />
+                <input type="radio" id="3" name="gender" value="3" <?php if(empty($_POST['gender']) || $_POST['gender']=== "3" ){ echo 'checked';} ?> />
                 <label for="2">未選択</label>
             </div>
 
@@ -194,7 +194,7 @@
             <p id="address_2_msg"></p>
 
             <div>
-                <input type="submit" class="submit" value="確認する">
+                <input type="submit" class="button" value="確認する">
             </div>
 
         </form>
@@ -204,7 +204,7 @@
         <br>
 
         <form class="back" action="index.php">
-            <input type="submit" class="back" value="TOPページへ戻る">
+            <input type="submit" class="button" value="TOPページへ戻る">
         </form>
     </div>
 

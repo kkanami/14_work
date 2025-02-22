@@ -9,16 +9,20 @@
 
 <body>
    
-    <header>
-        <img src="img/library.png">
+    header
+  <header>
+        <div class="img_icon">
+             <a href="index.php"><img src="img/library.png" alt="TOPページへ"></a>
+        </div>
+     
         <div class="content">
             <ul class="menu">
-               <li><h2>Collection Of Book</h2></li>
+                <li><h2>Collection Of Book</h2></li>
                 <li><a href="mypage.php">マイページ</a></li>
                 <li> <a href="profile.php">プロフィール</a></li>
                 <li> <a href="newbook.php">蔵書登録</a></li>
                 <li> <a href="search.php">蔵書検索</a></li>
-                <li><a href="login.php">ログイン</a></li>
+                <li><a href="index.php">ログイン</a></li>
                 <li><a href="logout.php">ログアウト</a></li>
             </ul>
         </div>
@@ -46,7 +50,7 @@
         <div class="top_image">
             <p><span>削除完了しました</span></p>
             <form action="mypage.html">
-                <input type="submit" class="button1" value="TOPページへ戻る">
+                <input type="submit" class="button1" value="マイページへ戻る">
             </form>
         </div>
 

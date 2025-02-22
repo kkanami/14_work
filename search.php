@@ -1,4 +1,22 @@
+<?php
+    mb_internal_encoding("utf8");
+    session_start();
+    $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
+    $stmt=$pdo->query("select*from login_user where id = '". $_SESSION['user']."'");
+    $row=$stmt->fetch();
+    
 
+    if(isset($_SESSION['user'])){
+        echo  "<p>". $row['nick_name']."さん"."</p>";
+    }else{
+        echo "ログインしてください";
+        echo' <form action="index.php">
+                    <input type="submit" class="button1" value="ログイン">
+                </form>';
+    exit();
+}
+
+?>
 
 
 <!doctype html>
@@ -7,25 +25,27 @@
 <head>
     <meta charset="utf-8">
     <title>蔵書検索画面</title>
-    <link rel="stylesheet" type="text/css" href="mypage.css">
+    <link rel="stylesheet" type="text/css" href="regist.css">
 </head>
 
 <body>
-    <header>
-        <img src="img/library.png">
+  <header>
+        <div class="img_icon">
+             <a href="index.php"><img src="img/library.png" alt="TOPページへ"></a>
+        </div>
+     
         <div class="content">
             <ul class="menu">
-               <li><h2>Collection Of Book</h2></li>
+                <li><h2>Collection Of Book</h2></li>
                 <li><a href="mypage.php">マイページ</a></li>
                 <li> <a href="profile.php">プロフィール</a></li>
                 <li> <a href="newbook.php">蔵書登録</a></li>
                 <li> <a href="search.php">蔵書検索</a></li>
-                <li><a href="login.php">ログイン</a></li>
+                <li><a href="index.php">ログイン</a></li>
                 <li><a href="logout.php">ログアウト</a></li>
             </ul>
         </div>
     </header>
-
     <main>
         <h1>蔵書検索画面</h1>
 
@@ -75,7 +95,7 @@
         mb_internal_encoding("utf8");
         $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
         $sql="select*from collection_book 
-        where title like ? and author like ? and isbn=? and publisher like ? and publication_date like ? and memo like ? and (unread=? or unread=?)";
+        where title like ? and author like ? and isbn like ? and publisher like ? and publication_date like ? and memo like ? and (unread=? or unread=?) and owner like ?";
             
       if(!empty($_POST)) {
         $stmt = $pdo->prepare($sql);
@@ -84,13 +104,14 @@
         
         $stmt->bindValue(1,'%'.$_POST['title'].'%',PDO::PARAM_STR);
         $stmt->bindValue(2,'%'.$_POST['author'].'%',PDO::PARAM_STR);
-        $stmt->bindValue(3,$_POST['isbn'],PDO::PARAM_STR);
+        $stmt->bindValue(3,'%'.$_POST['isbn'].'%',PDO::PARAM_STR);
         $stmt->bindValue(4, '%'.$_POST['publisher'].'%',PDO::PARAM_STR);
         $stmt->bindValue(5, '%'.$_POST['publication_date'].'%',PDO::PARAM_STR);
         $stmt->bindValue(6,'%'.$_POST['memo'].'%',PDO::PARAM_STR);
         $stmt->bindValue(7,$unread);
         $stmt->bindValue(8,$unread2);
-
+        $stmt->bindValue(9,'%'.$_SESSION['user'].'%',PDO::PARAM_STR);
+          
         $stmt->execute();
       }
               
@@ -137,20 +158,20 @@
             $unread=$row['unread'] ;
             $unreaddisp=$option[$row['unread']];
         echo "<td>".$unreaddisp."</td>";
-     echo "<td>". $row['memo']."</td>";
+     echo "<td>".$row['memo']."</td>";
 
 
         $regist=$row['registered_time'];
        if(empty($row['registered_time'])){
            echo "<td>".''."</td>" ; 
-       } else if   (!empty($row['registered_time'])){ 
+       } else{ 
             echo "<td>". date('Y/m/d', strtotime($regist))."</td>";
        }
 
         $update=$row['update_time'];
       if(empty($row['update_time'])){
            echo "<td>".''."</td>" ; 
-       } else if   (!empty($row['update_time'])){ 
+       } else { 
             echo "<td>". date('Y/m/d', strtotime($update))."</td>";
        }
 

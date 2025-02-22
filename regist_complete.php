@@ -42,7 +42,7 @@ $stmt->execute();
         <div class="main">
             <p><span>登録完了しました</span></p>
              <form action="index.php">
-           <input type="submit" class="button1" value="TOPページへ戻る">
+           <input type="submit" class="button" value="TOPページへ戻る">
        </form>
         </div>
          </div>

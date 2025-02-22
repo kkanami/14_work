@@ -1,4 +1,22 @@
+<?php
+    mb_internal_encoding("utf8");
+    session_start();
+    $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
+    $stmt=$pdo->query("select*from login_user where id = '". $_SESSION['user']."'");
+    $row=$stmt->fetch();
+    
 
+    if(isset($_SESSION['user'])){
+        echo  "<p>". $row['nick_name']."さん"."</p>";
+    }else{
+        echo "ログインしてください";
+        echo' <form action="index.php">
+                    <input type="submit" class="button1" value="ログイン">
+                </form>';
+    exit();
+}
+
+?>
 
 <!doctype html>
 <html lang="ja">
@@ -20,17 +38,14 @@
 </head>
 
 <body>
-   
-       <header>
+   <header>
         <div class="img_icon">
-            <img src="img/library.png">
+            <a href="index.php"><img src="img/library.png" alt="TOPページへ"></a>
         </div>
         
         <div class="content">
             <ul class="menu">
-                <li>
-                    <h1>Collection Of Book</h1>
-                </li>
+                <li><h2>Collection Of Book</h2></li>
                 <li><a href="mypage.php">マイページ</a></li>
                 <li> <a href="profile.php">プロフィール</a></li>
                 <li> <a href="newbook.php">蔵書登録</a></li>
@@ -48,8 +63,10 @@
         //PDO
         mb_internal_encoding("utf8");
         $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
-        $stmt=$pdo->query("select*from collection_book where id = '". $_SESSION['user']."'");
-        $row=$stmt->fetch() 
+        if(!empty($_POST)){
+        $stmt=$pdo->query("select*from collection_book where owner = '". $_SESSION['user']."' and id = '".$_POST['resultid1']."'");
+        $row=$stmt->fetch() ;
+            }
         ?>
         <table>
             <form method="post" class="main" action="update_confirm.php" 　name="form" id="form" onsubmit="check()">
@@ -57,7 +74,7 @@
                 <div>
                     <label>タイトル</label>
                     <br>
-                    <input type="text" class="text" pattern="^[ぁ-ん一-龠ー]*$" size="35" maxlength="10" id="title" name="title" value="<?php if(!empty($_POST['title'])){echo $_POST['title'];}else{echo $row['title'];}?>">
+                    <input type="text" class="text" size="35" maxlength="10" id="title" name="title" value="<?php if(!empty($_POST['title'])){echo $_POST['title'];}else{echo $row['title'];}?>">
                     <br>
                 </div>
                 <p style="color:#FF0000" id="title_msg"></p>
@@ -66,7 +83,7 @@
                 <div>
                     <label>著書</label>
                     <br>
-                    <input type="text" class="text" pattern="^[ぁ-ん一-龠ー]*$" size="35" maxlength="10" id="author" name="author" value="<?php if(!empty($_POST['author'])){echo $_POST['author'];}else{echo $row['author'];}?>">
+                    <input type="text" class="text" size="35" maxlength="10" id="author" name="author" value="<?php if(!empty($_POST['author'])){echo $_POST['author'];}else{echo $row['author'];}?>">
                 </div>
              
 
@@ -74,7 +91,7 @@
                 <div>
                     <label>ISBN/ISSN</label>
                     <br>
-                    <input type="text" pattern="[\u30A1-\u30F6]*" class="text" size="35" maxlength="10" id="isbn" name="isbn" value="<?php if(!empty($_POST['isbn'])){echo $_POST['isbn'];}else{echo $row['isbn'];}?>">
+                    <input type="text" pattern="^[-0-9]+$" class="text" size="35" maxlength="10" id="isbn" name="isbn" value="<?php if(!empty($_POST['isbn'])){echo $_POST['isbn'];}else{echo $row['isbn'];}?>">
                 </div>
            
 
@@ -82,7 +99,7 @@
                 <div>
                     <label>出版者</label>
                     <br>
-                    <input type="text" pattern="[\u30A1-\u30F6]*" 　inputmode="katakana" class="text" size="35" maxlength="10" id="publisher" name="publisher" value="<?php if(!empty($_POST['publisher'])){echo $_POST['publisher'];}else{echo $row['publisher'];}?>">
+                    <input type="text" 　inputmode="katakana" class="text" size="35" maxlength="10" id="publisher" name="publisher" value="<?php if(!empty($_POST['publisher'])){echo $_POST['publisher'];}else{echo $row['publisher'];}?>">
                 </div>
             
 
@@ -105,7 +122,7 @@
                 <div>
                     <label>memo</label>
                     <br>
-                    <input type="text" class="text" pattern="^[　ー０-９ぁ-んァ-ヶｱ-ﾝﾞﾟ一-龠ー]*$" size="100" maxlength="100" id="memo" name="memo" value="<?php if(!empty($_POST['memo'])){echo $_POST['memo'];}else{echo $row['memo'];}?>">
+                    <input type="text" class="text" size="100" maxlength="100" id="memo" name="memo" value="<?php if(!empty($_POST['memo'])){echo $_POST['memo'];}else{echo $row['memo'];}?>">
                 </div>
       
                 <div>

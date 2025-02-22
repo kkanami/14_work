@@ -1,41 +1,3 @@
-▼ログインチェック
-<?php
-    session_start();
-    if(!isset($_SESSION['user'])){
-        echo "ログインしてください";
-        echo' <form action="index.php">
-                    <input type="submit" class="button1" value="ログイン">
-                </form>';
-    exit();
-}
-
-
-if($_SESSION['user']==0){
-   echo "権限がありません";
-    exit();
-}
-?>
-
-↑入れない場合から書いた方がいいっぽい
-
-
-▼権限チェック
-<?php
-if($_SESSION['user']==1){
-    $reg='<a href="regist.php">アカウント登録</a>';
-    $li='<a href="list.php">アカウント一覧</a>';
-}else {
-    $reg = '';
-    $li = '';
-}
-?>
-
-
-
-
-'". $_SESSION['user']."'
-
-ログインチェック+ユーザー表示
 <?php
     mb_internal_encoding("utf8");
     session_start();
@@ -56,12 +18,27 @@ if($_SESSION['user']==1){
 
 ?>
 
-header
-  <header>
+<?php
+session_start();
+$_SESSION = array();//セッションの中身をすべて削除
+session_destroy();//セッションを破壊
+?>
+<!doctype html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <title>ログアウト画面</title>
+
+    <link rel="stylesheet" type="text/css" href="regist.css">
+</head>
+
+<body>
+    <header>
         <div class="img_icon">
-             <a href="index.php"><img src="img/library.png" alt="TOPページへ"></a>
+           <a href="index.php"><img src="img/library.png" alt="TOPページへ"></a>
         </div>
-     
+        
         <div class="content">
             <ul class="menu">
                 <li><h2>Collection Of Book</h2></li>
@@ -69,8 +46,30 @@ header
                 <li> <a href="profile.php">プロフィール</a></li>
                 <li> <a href="newbook.php">蔵書登録</a></li>
                 <li> <a href="search.php">蔵書検索</a></li>
-                <li><a href="index.php">ログイン</a></li>
+                <li><a href="login.php">ログイン</a></li>
                 <li><a href="logout.php">ログアウト</a></li>
             </ul>
         </div>
     </header>
+
+
+
+
+    <main>
+        <h1>ログアウト画面</h1>
+
+
+
+        <div>
+            <p><span>ログアウトしました</span></p>
+        </div>
+
+
+
+
+    </main>
+
+  
+</body>
+
+</html>

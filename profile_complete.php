@@ -1,3 +1,22 @@
+<?php
+    mb_internal_encoding("utf8");
+    session_start();
+    $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
+    $stmt=$pdo->query("select*from login_user where id = '". $_SESSION['user']."'");
+    $row=$stmt->fetch();
+    
+
+    if(isset($_SESSION['user'])){
+        echo  "<p>". $row['nick_name']."さん"."</p>";
+    }else{
+        echo "ログインしてください";
+        echo' <form action="index.php">
+                    <input type="submit" class="button1" value="ログイン">
+                </form>';
+    exit();
+}
+
+?>
 <!doctype html>
 <html lang="ja">
 
@@ -11,14 +30,12 @@
 <body>
      <header>
         <div class="img_icon">
-            <img src="img/library.png">
+            <a href="index.php"><img src="img/library.png" alt="TOPページへ"></a>
         </div>
         
         <div class="content">
             <ul class="menu">
-                <li>
-                    <h1>Collection Of Book</h1>
-                </li>
+                <li><h2>Collection Of Book</h2></li>
                 <li><a href="mypage.php">マイページ</a></li>
                 <li> <a href="profile.php">プロフィール</a></li>
                 <li> <a href="newbook.php">蔵書登録</a></li>

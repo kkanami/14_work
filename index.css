@@ -20,7 +20,7 @@ p {
 }
 
 .login {
-    margin-top: 250px;
+    margin-top: 50px;
     color: white;
     font-weight: bold;
 }
@@ -29,7 +29,37 @@ p {
     margin-top: 60px;
 }
 
+
 a {
     text-decoration: none;
-    color: black;
+    color: white;
+    background-color: black;
+    padding: 5px 20px;
+    border-radius: 5px;
+}
+
+a:hover {
+    color: #000;
+    background: #fff;
+}
+
+
+.mypage {
+    margin-top: 200px;
+    color: white;
+}
+
+
+
+.button {
+    margin: 40px 20px;
+    padding: 5px 20px;
+    border: 2px solid #000;
+    border-radius: 5px;
+    background: #fff;
+}
+
+.button:hover {
+    color: #fff;
+    background: #000;
 }

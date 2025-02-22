@@ -1,3 +1,24 @@
+<?php
+    mb_internal_encoding("utf8");
+    session_start();
+    $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
+    $stmt=$pdo->query("select*from login_user where id = '". $_SESSION['user']."'");
+    $row=$stmt->fetch();
+    
+
+    if(isset($_SESSION['user'])){
+        echo  "<p>". $row['nick_name']."さん"."</p>";
+    }else{
+        echo "ログインしてください";
+        echo' <form action="index.php">
+                    <input type="submit" class="button1" value="ログイン">
+                </form>';
+    exit();
+}
+
+?>
+
+
 <!doctype html>
 <html lang="ja">
 
@@ -10,73 +31,69 @@
 <body>
     <header>
         <div class="img_icon">
-            <img src="img/library.png">
+            <a href="index.php"><img src="img/library.png" alt="TOPページへ"></a>
         </div>
-        
+
         <div class="content">
             <ul class="menu">
                 <li>
-                    <h1>Collection Of Book</h1>
+                    <h2>Collection Of Book</h2>
                 </li>
                 <li><a href="mypage.php">マイページ</a></li>
                 <li> <a href="profile.php">プロフィール</a></li>
                 <li> <a href="newbook.php">蔵書登録</a></li>
                 <li> <a href="search.php">蔵書検索</a></li>
-                <li><a href="login.php">ログイン</a></li>
+                <li><a href="index.php">ログイン</a></li>
                 <li><a href="logout.php">ログアウト</a></li>
             </ul>
         </div>
     </header>
 
     <main>
+        <h1>catalog</h1>
         <?php
-        mb_internal_encoding("utf8");
         $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
-        $stmt=$pdo->query("select* from collection_book");
+        $stmt=$pdo->query("select* from collection_book where owner = '". $_SESSION['user']."' order by id desc");
         
 
-        
              while($row=$stmt->fetch()){
-                echo  '<table border="1">' ;
-                echo "<tr>";
+                echo '<table border="1">' ;
+              
                  $result= $row['id'];
-                echo "<td>".$result."</td>";
-                echo "<td>". $row['title']."</td>";
-                echo "<td>". $row['author']."</td>";
-                echo "<td>". $row['isbn']."</td>";
-                echo "<td>". $row['publisher']."</td>";
-                echo "<td>". $row['publication_date']."</td>";
-    
-               
-                $option=['0'=>'未読',
-                         '1'=>'既読'];
+                echo '<tr><td class="left">'.$result.'</td><td class="center"></td><td class="right"></td></tr>';
+                 
+                    $option=['0'=>'未読',
+                             '1'=>'既読'];
                     $unread=$row['unread'] ;
                     $unreaddisp=$option[$row['unread']];
-                echo "<td>".$unreaddisp."</td>";
-        
-                echo "<td>". $row['memo']."</td>";
-        
-                echo "<td>";
-                echo '<form method="post" class="back" action="update.php" >';
-                echo"<input type='hidden' value={$result} name='resultid1' id='resultid1'>";
-                echo'<input type="submit" class="back" value="更新">';
-                echo"</form>";
-                echo"</td>";
-
-                echo "<td>";
-                echo '<form  method="post" class="back" action="delete.php">';
-                echo"<input type='hidden' value={$result} name='resultid2' id='resultid2'>";
-                echo"<input type='submit' class='back' value='削除'>";
+                echo "<tr><td>".$unreaddisp."</td><td></td><td>". $row['title']."</td></tr>";
+                echo "<tr><td></td><td></td><td>". $row['author']."</td></tr>";
+                echo "<tr><td>". $row['isbn']."</td><td></td><td>". $row['publisher']."</td></tr>";
+                echo "<tr><td></td><td></td><td>". $row['publication_date']."</td></tr>";
+                echo "<tr><td></td><td></td><td>". $row['memo']."</td></tr>";
+               
+                 
+              
+                 
+                echo '<tr><td><form method="post" action="update.php" >';
+                echo "<input type='hidden' value={$result} name='resultid1' id='resultid1'>";
+                echo '<input type="submit" class="button" value="更新">';
+                echo "</form></td>";
+                 
+                echo '<td><form  method="post" action="delete.php">';
+                echo "<input type='hidden' value={$result} name='resultid2' id='resultid2'>";
+                echo "<input type='submit' class='button' value='削除'>";
  
-                echo"</form>";
-                echo"</td>";
-                echo" </tr>";
-            
+                echo "</form>";
+                echo "</td><td></td></tr>";
+           
+                 echo "</table>";
+                 echo "<br>";
                }
           
-         echo  " </table>";
+        
     ?>
-    
+
     </main>
 
 
