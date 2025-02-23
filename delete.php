@@ -1,3 +1,23 @@
+<?php
+    mb_internal_encoding("utf8");
+    if(!isset($_SESSION)) {
+        session_start();
+     }
+
+    if(empty($_SESSION['user'])) {
+        echo "ログインしてください";
+        echo' <form action="index.php"><input type="submit" class="button" value="ログイン"></form>';
+        exit();
+    }
+
+    $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
+    $stmt=$pdo->query("select*from login_user where id = '". $_SESSION['user']."'");
+    $row=$stmt->fetch();
+    
+    echo  "<p>". $row['nick_name']."さん"."</p>";
+
+
+?>
 <!doctype html>
 <html lang="ja">
 
@@ -104,7 +124,7 @@
 
         </table>
 
-        <form method="post" class="button" action="delete_confirm.php">
+        <form method="post"  action="delete_confirm.php">
             <input type='hidden' value='<?php echo $_POST["resultid2"];?>' name='resultid2' id='resultid2'>
             <input type="submit" class="button" value="確認する">
         </form>

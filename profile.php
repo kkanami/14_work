@@ -1,23 +1,23 @@
 <?php
     mb_internal_encoding("utf8");
-    session_start();
+    if(!isset($_SESSION)) {
+        session_start();
+     }
+
+    if(empty($_SESSION['user'])) {
+        echo "ログインしてください";
+        echo' <form action="index.php"><input type="submit" class="button" value="ログイン"></form>';
+        exit();
+    }
+
     $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
     $stmt=$pdo->query("select*from login_user where id = '". $_SESSION['user']."'");
     $row=$stmt->fetch();
     
+    echo  "<p>". $row['nick_name']."さん"."</p>";
 
-    if(isset($_SESSION['user'])){
-        echo  "<p>". $row['nick_name']."さん"."</p>";
-    }else{
-        echo "ログインしてください";
-        echo' <form action="index.php">
-                    <input type="submit" class="button1" value="ログイン">
-                </form>';
-    exit();
-}
 
 ?>
-
 
 
 <!doctype html>
@@ -63,22 +63,22 @@
             }
         }
 
-       
-
     </script>
-    
+
     <link rel="stylesheet" type="text/css" href="regist.css">
 </head>
 
 <body>
-     <header>
+    <header>
         <div class="img_icon">
-             <a href="index.php"><img src="img/library.png" alt="TOPページへ"></a>
+            <a href="index.php"><img src="img/library.png" alt="TOPページへ"></a>
         </div>
-        
+
         <div class="content">
             <ul class="menu">
-                <li><h2>Collection Of Book</h2></li>
+                <li>
+                    <h2>Collection Of Book</h2>
+                </li>
                 <li><a href="mypage.php">マイページ</a></li>
                 <li> <a href="profile.php">プロフィール</a></li>
                 <li> <a href="newbook.php">蔵書登録</a></li>
@@ -90,18 +90,17 @@
     </header>
 
     <main>
-       <div class="top_image">
-        <h1>プロフィール</h1>
-        <?php
-        //PDO
-        mb_internal_encoding("utf8");
-        $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
-        $stmt=$pdo->query("select*from login_user where id = '". $_SESSION['user']."'");
-        $row=$stmt->fetch();
-        ?>
-        
-        <table>
+        <div class="top_image">
+
             <form method="post" class="main" action="profile_confirm.php" 　name="form" id="form" onsubmit="return !! (check() & check2() & check3()& check4())">
+
+                <h1>プロフィール</h1>
+                <?php
+                mb_internal_encoding("utf8");
+                $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
+                $stmt=$pdo->query("select*from login_user where id = '". $_SESSION['user']."'");
+                $row=$stmt->fetch();
+                ?>
 
                 <div>
                     <label>名前（姓）</label>
@@ -150,8 +149,8 @@
 
                     <input type="radio" id="1" name="gender" value="1" <?php if(empty($_POST['gender'])) { if($row['gender']== "1" ){ echo 'checked';}} else{ if($_POST['gender']== "1" ){ echo 'checked';}}?> />
                     <label for="1">女</label>
-                    
-                     <input type="radio" id="2" name="gender" value="2" <?php if(empty($_POST['gender'])) { if($row['gender']== "2" ){ echo 'checked';}} else{ if($_POST['gender']== "2" ){ echo 'checked';}}?> />
+
+                    <input type="radio" id="2" name="gender" value="2" <?php if(empty($_POST['gender'])) { if($row['gender']== "2" ){ echo 'checked';}} else{ if($_POST['gender']== "2" ){ echo 'checked';}}?> />
                     <label for="2">未選択</label>
 
                 </div>
@@ -163,7 +162,7 @@
                     <input type="text" pattern="^[0-9]*$" class="text" size="35" maxlength="7" id="postal_code" name="postal_code" value="<?php if(!empty($_POST['postal_code'])){echo $_POST['postal_code'];}else{echo $row['postal_code'];}?>">
                 </div>
                 <p style="color:#FF0000" id="postal_code_msg"></p>
-               
+
 
                 <div>
 
@@ -236,7 +235,7 @@
                 </div>
                 <p style="color:#FF0000" id="address_2_msg"></p>
 
-             
+
                 <div>
                     <input type='hidden' value='<?php echo $_POST["resultid1"];?>' name='resultid1' id='resultid1'>
                     <input type="submit" class="submit" value="確認する">
@@ -245,9 +244,6 @@
             </form>
 
 
-
-
-        </table>
         </div>
     </main>
 

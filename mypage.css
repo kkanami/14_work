@@ -57,7 +57,6 @@ h1 {
 }
 
 
-
 table{
     width: 40%;
     margin: 0 auto;
@@ -65,10 +64,12 @@ table{
     border-collapse: collapse;
     background-color: #faebd7;
     border-color: #ff4500;
+    box-shadow: 15px 10px 0px 0 rgb(0, 0, 0,0.3);
 }
 
 .left{
     width: 20%;
+    height: 35px;
 }
 
 .center{
@@ -79,6 +80,9 @@ table{
     width: 70%;
 }
 
+td .td2,.td3,.td4,.td5,.td6{
+    min-height: 30px;
+}
 
 
 .button {

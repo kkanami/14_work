@@ -1,20 +1,21 @@
 <?php
     mb_internal_encoding("utf8");
-    session_start();
+    if(!isset($_SESSION)) {
+        session_start();
+     }
+
+    if(empty($_SESSION['user'])) {
+        echo "ログインしてください";
+        echo' <form action="index.php"><input type="submit" class="button" value="ログイン"></form>';
+        exit();
+    }
+
     $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
     $stmt=$pdo->query("select*from login_user where id = '". $_SESSION['user']."'");
     $row=$stmt->fetch();
     
+    echo  "<p>". $row['nick_name']."さん"."</p>";
 
-    if(isset($_SESSION['user'])){
-        echo  "<p>". $row['nick_name']."さん"."</p>";
-    }else{
-        echo "ログインしてください";
-        echo' <form action="index.php">
-                    <input type="submit" class="button1" value="ログイン">
-                </form>';
-    exit();
-}
 
 ?>
 
@@ -47,7 +48,7 @@
             </ul>
         </div>
     </header>
-    <div class="top_image">
+
 
        <div class="top_image">
         <div class="main">
@@ -100,7 +101,7 @@
             
             <div class="button_container">
                 <form action="newbook_complete.php" method="post">
-                    <input type="submit" class="button2" value="登録する">
+                    <input type="submit" class="button" value="登録する">
                     <input type="hidden" value="<?php if(!empty($_POST['title'])){echo $_POST['title'];}?>" name="title">
                     <input type="hidden" value="<?php if(!empty($_POST['author'])){echo $_POST['author'];}?>" name="author">
                     <input type="hidden" value="<?php if(!empty($_POST['isbn'])){echo $_POST['isbn'];}?>" name="isbn">
@@ -112,7 +113,7 @@
                 </form>
  
                 <form method="POST" action="newbook.php">
-                    <input type="submit" class="button2" value="前に戻る">
+                    <input type="submit" class="button" value="前に戻る">
                     <input type="hidden" value="<?php if(!empty($_POST['title'])){echo $_POST['title'];}?>" name="title">
                     <input type="hidden" value="<?php if(!empty($_POST['author'])){echo $_POST['author'];}?>" name="author">
                     <input type="hidden" value="<?php if(!empty($_POST['isbn'])){echo $_POST['isbn'];}?>" name="isbn">
@@ -128,13 +129,6 @@
 
 
     </div>
-
-    </div>
-    <br>
-
-    <form class="back" action="mypage.php">
-        <input type="submit" class="back" value="マイページへ戻る">
-    </form>
 
 
 </body>

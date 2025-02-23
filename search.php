@@ -1,20 +1,21 @@
 <?php
     mb_internal_encoding("utf8");
-    session_start();
+    if(!isset($_SESSION)) {
+        session_start();
+     }
+
+    if(empty($_SESSION['user'])) {
+        echo "ログインしてください";
+        echo' <form action="index.php"><input type="submit" class="button" value="ログイン"></form>';
+        exit();
+    }
+
     $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
     $stmt=$pdo->query("select*from login_user where id = '". $_SESSION['user']."'");
     $row=$stmt->fetch();
     
+    echo  "<p>". $row['nick_name']."さん"."</p>";
 
-    if(isset($_SESSION['user'])){
-        echo  "<p>". $row['nick_name']."さん"."</p>";
-    }else{
-        echo "ログインしてください";
-        echo' <form action="index.php">
-                    <input type="submit" class="button1" value="ログイン">
-                </form>';
-    exit();
-}
 
 ?>
 
@@ -25,18 +26,20 @@
 <head>
     <meta charset="utf-8">
     <title>蔵書検索画面</title>
-    <link rel="stylesheet" type="text/css" href="regist.css">
+    <link rel="stylesheet" type="text/css" href="search.css">
 </head>
 
 <body>
-  <header>
+    <header>
         <div class="img_icon">
-             <a href="index.php"><img src="img/library.png" alt="TOPページへ"></a>
+            <a href="index.php"><img src="img/library.png" alt="TOPページへ"></a>
         </div>
-     
+
         <div class="content">
             <ul class="menu">
-                <li><h2>Collection Of Book</h2></li>
+                <li>
+                    <h2>Collection Of Book</h2>
+                </li>
                 <li><a href="mypage.php">マイページ</a></li>
                 <li> <a href="profile.php">プロフィール</a></li>
                 <li> <a href="newbook.php">蔵書登録</a></li>
@@ -52,7 +55,7 @@
 
 
         <form method="post" class="search" action="#">
-            <table border="1" style="border-collapse: collapse">
+            <table class="search" border="1" style="border-collapse: collapse">
                 <tr>
                     <th>タイトル</th>
                     <td><input type="text" class="text" id="" name="title" value=""></td>
@@ -78,20 +81,20 @@
                     </td>
                 </tr>
                 <tr>
-                   <th>memo</th>
+                    <th>memo</th>
                     <td> <input type="text" class="text" id="memo" name="memo" value=""></td>
                 </tr>
             </table>
 
             <div class="search_submit">
-                <input type="submit" class="search_submit" value="検索">
+                <input type="submit" class="button" value="検索">
             </div>
 
         </form>
 
 
-
-        <?php
+        <div class="top_image">
+            <?php
         mb_internal_encoding("utf8");
         $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
         $sql="select*from collection_book 
@@ -123,7 +126,7 @@
  if(!empty($_POST)){
      
   
-        echo  '<table border="1">' ;
+        echo  '<table class="result" border="1">' ;
         echo  "<tr>";
         echo  " <th>ID</th>";
         echo  " <th>タイトル</th>";
@@ -178,29 +181,25 @@
         echo "<td>";
         echo '<form method="post" class="back" action="update.php" >';
         echo"<input type='hidden' value={$result} name='resultid1' id='resultid1'>";
-        echo'<input type="submit" class="back" value="更新">';
+        echo'<input type="submit" class="button" value="更新">';
         echo"</form>";
         echo"</td>";
 
         echo "<td>";
         echo '<form  method="post" class="back" action="delete.php">';
         echo"<input type='hidden' value={$result} name='resultid2' id='resultid2'>";
-        echo"<input type='submit' class='back' value='削除'>";
+        echo"<input type='submit' class='button' value='削除'>";
 
         echo"</form>";
         echo"</td>";
         echo" </tr>";
     }
        }
-           
-
-
-
-
+ 
          echo  " </table>";
-  
    ?>
 
+        </div>
 
     </main>
 

@@ -61,9 +61,9 @@
 <body>
 
     <div class="top_image">
-        <h1>アカウント登録</h1>
-        <form method="post" class="main" action="regist_confirm.php" 　name="form" id="form" onsubmit="return !! (check() & check2() & check3()& check4()& check5())">
 
+        <form method="post" class="main" action="regist_confirm.php" 　name="form" id="form" onsubmit="return !! (check() & check2() & check3()& check4()& check5())">
+            <h1>アカウント登録</h1>
             <div>
                 <label>名前（姓）</label>
                 <br>

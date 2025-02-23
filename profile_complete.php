@@ -1,20 +1,21 @@
 <?php
     mb_internal_encoding("utf8");
-    session_start();
+    if(!isset($_SESSION)) {
+        session_start();
+     }
+
+    if(empty($_SESSION['user'])) {
+        echo "ログインしてください";
+        echo' <form action="index.php"><input type="submit" class="button" value="ログイン"></form>';
+        exit();
+    }
+
     $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
     $stmt=$pdo->query("select*from login_user where id = '". $_SESSION['user']."'");
     $row=$stmt->fetch();
     
+    echo  "<p>". $row['nick_name']."さん"."</p>";
 
-    if(isset($_SESSION['user'])){
-        echo  "<p>". $row['nick_name']."さん"."</p>";
-    }else{
-        echo "ログインしてください";
-        echo' <form action="index.php">
-                    <input type="submit" class="button1" value="ログイン">
-                </form>';
-    exit();
-}
 
 ?>
 <!doctype html>
@@ -73,10 +74,11 @@
         
         ?>
 
-        <div>
-            <p><span>更新完了しました</span></p>
-            <form action="mypage.php">
-                <input type="submit" class="button1" value="マイページへ戻る">
+        <div class="top_image">
+           
+            <form action="mypage.php" class="main">
+                <p><span>更新完了しました</span></p>
+                <input type="submit" class="button" value="マイページへ戻る">
             </form>
         </div>
 

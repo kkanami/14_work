@@ -1,20 +1,21 @@
 <?php
     mb_internal_encoding("utf8");
-    session_start();
+    if(!isset($_SESSION)) {
+        session_start();
+     }
+
+    if(empty($_SESSION['user'])) {
+        echo "ログインしてください";
+        echo' <form action="index.php"><input type="submit" class="button" value="ログイン"></form>';
+        exit();
+    }
+
     $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
     $stmt=$pdo->query("select*from login_user where id = '". $_SESSION['user']."'");
     $row=$stmt->fetch();
     
+    echo  "<p>". $row['nick_name']."さん"."</p>";
 
-    if(isset($_SESSION['user'])){
-        echo  "<p>". $row['nick_name']."さん"."</p>";
-    }else{
-        echo "ログインしてください";
-        echo' <form action="index.php">
-                    <input type="submit" class="button1" value="ログイン">
-                </form>';
-    exit();
-}
 
 ?>
 <!doctype html>
@@ -42,14 +43,16 @@
 
 
 <body>
-   <header>
+    <header>
         <div class="img_icon">
-             <a href="index.php"><img src="img/library.png" alt="TOPページへ"></a>
+            <a href="index.php"><img src="img/library.png" alt="TOPページへ"></a>
         </div>
-     
+
         <div class="content">
             <ul class="menu">
-                <li><h2>Collection Of Book</h2></li>
+                <li>
+                    <h2>Collection Of Book</h2>
+                </li>
                 <li><a href="mypage.php">マイページ</a></li>
                 <li> <a href="profile.php">プロフィール</a></li>
                 <li> <a href="newbook.php">蔵書登録</a></li>
@@ -61,9 +64,9 @@
     </header>
 
     <div class="top_image">
-        <h1>蔵書登録</h1>
-        <form method="post" class="main" action="newbook_confirm.php" 　name="form" id="form" onsubmit="check()">
 
+        <form method="post" class="main" action="newbook_confirm.php" 　name="form" id="form" onsubmit="check()">
+            <h1>蔵書登録</h1>
             <div>
                 <label>タイトル</label>
                 <br>
@@ -123,18 +126,13 @@
 
 
             <div>
-                <input type="submit" class="submit" value="確認する">
+                <input type="submit" class="button" value="確認する">
             </div>
 
         </form>
 
     </div>
-    <br>
-
-    <form class="back" action="mypage.php">
-        <input type="submit" class="back" value="マイページへ戻る">
-    </form>
-
+   
 
 </body>
 

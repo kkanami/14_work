@@ -1,3 +1,23 @@
+<?php
+    mb_internal_encoding("utf8");
+    if(!isset($_SESSION)) {
+        session_start();
+     }
+
+    if(empty($_SESSION['user'])) {
+        echo "ログインしてください";
+        echo' <form action="index.php"><input type="submit" class="button" value="ログイン"></form>';
+        exit();
+    }
+
+    $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
+    $stmt=$pdo->query("select*from login_user where id = '". $_SESSION['user']."'");
+    $row=$stmt->fetch();
+    
+    echo  "<p>". $row['nick_name']."さん"."</p>";
+
+
+?>
 <!doctype html>
 <html lang="ja">
 
@@ -50,7 +70,7 @@
         <div class="top_image">
             <p><span>削除完了しました</span></p>
             <form action="mypage.html">
-                <input type="submit" class="button1" value="マイページへ戻る">
+                <input type="submit" class="button" value="マイページへ戻る">
             </form>
         </div>
 

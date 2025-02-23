@@ -1,20 +1,21 @@
 <?php
     mb_internal_encoding("utf8");
-    session_start();
+    if(!isset($_SESSION)) {
+        session_start();
+     }
+
+    if(empty($_SESSION['user'])) {
+        echo "ログインしてください";
+        echo' <form action="index.php"><input type="submit" class="button" value="ログイン"></form>';
+        exit();
+    }
+
     $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
     $stmt=$pdo->query("select*from login_user where id = '". $_SESSION['user']."'");
     $row=$stmt->fetch();
     
+    echo  "<p>". $row['nick_name']."さん"."</p>";
 
-    if(isset($_SESSION['user'])){
-        echo  "<p>". $row['nick_name']."さん"."</p>";
-    }else{
-        echo "ログインしてください";
-        echo' <form action="index.php">
-                    <input type="submit" class="button1" value="ログイン">
-                </form>';
-    exit();
-}
 
 ?>
 
@@ -59,23 +60,21 @@
              while($row=$stmt->fetch()){
                 echo '<table border="1">' ;
               
-                 $result= $row['id'];
-                echo '<tr><td class="left">'.$result.'</td><td class="center"></td><td class="right"></td></tr>';
-                 
-                    $option=['0'=>'未読',
-                             '1'=>'既読'];
-                    $unread=$row['unread'] ;
-                    $unreaddisp=$option[$row['unread']];
-                echo "<tr><td>".$unreaddisp."</td><td></td><td>". $row['title']."</td></tr>";
-                echo "<tr><td></td><td></td><td>". $row['author']."</td></tr>";
-                echo "<tr><td>". $row['isbn']."</td><td></td><td>". $row['publisher']."</td></tr>";
-                echo "<tr><td></td><td></td><td>". $row['publication_date']."</td></tr>";
-                echo "<tr><td></td><td></td><td>". $row['memo']."</td></tr>";
+                $result= $row['id'];
+                $option=['0'=>'未読',
+                         '1'=>'既読'];
+                $unread=$row['unread'] ;
+                $unreaddisp=$option[$row['unread']];
+                echo '<tr><td class="left">'.$unreaddisp.'</td><td class="center"></td><td class="right"></td></tr>';
+                echo '<tr><td class="td2"></td><td></td><td>'. $row['title']."</td></tr>";
+                echo '<tr><td class="td3"></td><td></td><td>'. $row['author']."</td></tr>";
+                echo '<tr><td clas="td4">'. $row['isbn']."</td><td></td><td>". $row['publisher']."</td></tr>";
+                echo '<tr><td class="td5"></td><td></td><td>'. $row['publication_date']."</td></tr>";
                
                  
               
                  
-                echo '<tr><td><form method="post" action="update.php" >';
+                echo '<tr><td class="td6"><form method="post" action="update.php" >';
                 echo "<input type='hidden' value={$result} name='resultid1' id='resultid1'>";
                 echo '<input type="submit" class="button" value="更新">';
                 echo "</form></td>";
@@ -85,7 +84,7 @@
                 echo "<input type='submit' class='button' value='削除'>";
  
                 echo "</form>";
-                echo "</td><td></td></tr>";
+                echo "</td><td>". $row['memo']."</td></tr>";
            
                  echo "</table>";
                  echo "<br>";
