@@ -77,7 +77,7 @@
             </p>
             <div class="button_container">
             
-              <form method="POST" action="regist.php">
+             <form method="POST" action="regist.php">
                     <input type="submit" class="button" value="前に戻る">
                     <input type="hidden" value="<?php if(!empty($_POST['family_name'])){echo $_POST['family_name'];}?>" name="family_name">
                     <input type="hidden" value="<?php if(!empty($_POST['last_name'])){echo $_POST['last_name'];}?>" name="last_name">
@@ -91,6 +91,7 @@
                     <input type="hidden" value="<?php if(!empty($_POST['address_2'])){echo $_POST['address_2'];}?>" name="address_2">
 
                 </form>
+             
              
                 <form action="regist_complete.php" method="post">
                     <input type="submit" class="button" value="登録する">
@@ -106,7 +107,8 @@
                     <input type="hidden" value="<?php if(!empty($_POST['address_2'])){echo $_POST['address_2'];}?>" name="address_2">
 
                 </form>
-              
+                
+                
               
 
             </div>

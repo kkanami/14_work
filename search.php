@@ -50,50 +50,52 @@
         </div>
     </header>
     <main>
-        <h1>蔵書検索画面</h1>
-
-
-
-        <form method="post" class="search" action="#">
-            <table class="search" border="1" style="border-collapse: collapse">
-                <tr>
-                    <th>タイトル</th>
-                    <td><input type="text" class="text" id="" name="title" value=""></td>
-                    <th>著者</th>
-                    <td><input type="text" class="text" id="author" name="author" value=""></td>
-                </tr>
-                <tr>
-                    <th>ISBN/ISSN</th>
-                    <td> <input type="text" id="isbn" name="isbn" value=""></td>
-                    <th>出版者</th>
-                    <td><input type="text" class="text" id="publisher" name="publisher" value=""></td>
-                </tr>
-                <tr>
-                    <th>出版日</th>
-                    <td> <input type="ememo" class="text" id="publication_date" name="publication_date" value=""></td>
-                    <th>未読/既読</th>
-                    <td> <input type="radio" id="0" name="unread" value="0" checked>
-                        <label for="0">未読</label>
-                        <input type="radio" id="1" name="unread" value="1">
-                        <label for="1">既読</label>
-                        <input type="radio" id="2" name="unread" value="2">
-                        <label for="2">未選択</label>
-                    </td>
-                </tr>
-                <tr>
-                    <th>memo</th>
-                    <td> <input type="text" class="text" id="memo" name="memo" value=""></td>
-                </tr>
-            </table>
-
-            <div class="search_submit">
-                <input type="submit" class="button" value="検索">
-            </div>
-
-        </form>
-
-
         <div class="top_image">
+
+
+
+
+            <form method="post" class="main" action="#">
+                <h1>蔵書検索画面</h1>
+                <table class="search">
+                    <tr>
+                        <th>タイトル</th>
+                        <td><input type="text" class="text" id="" name="title" value=""></td>
+                        <th>著者</th>
+                        <td><input type="text" class="text" id="author" name="author" value=""></td>
+                    </tr>
+                    <tr>
+                        <th>ISBN/ISSN</th>
+                        <td> <input type="text" id="isbn" name="isbn" value=""></td>
+                        <th>出版者</th>
+                        <td><input type="text" class="text" id="publisher" name="publisher" value=""></td>
+                    </tr>
+                    <tr>
+                        <th>出版日</th>
+                        <td> <input type="ememo" class="text" id="publication_date" name="publication_date" value=""></td>
+                        <th>未読/既読</th>
+                        <td> <input type="radio" id="1" name="unread" value="1" checked>
+                            <label for="1">未読</label>
+                            <input type="radio" id="2" name="unread" value="2">
+                            <label for="2">既読</label>
+                            <input type="radio" id="3" name="unread" value="3">
+                            <label for="3">未選択</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>memo</th>
+                        <td colspan="3"> <input type="text" class="text" size="60" id="memo" name="memo" value=""></td>
+                    </tr>
+                </table>
+
+                <div class="search_submit">
+                    <input type="submit" class="button" value="検索">
+                </div>
+
+            </form>
+
+
+
             <?php
         mb_internal_encoding("utf8");
         $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
@@ -102,8 +104,8 @@
             
       if(!empty($_POST)) {
         $stmt = $pdo->prepare($sql);
-        $unread=isset($_POST['unread']) && ($_POST['unread']<=1)? $_POST['unread']:"";
-        $unread2=isset($_POST['unread']) && ($_POST['unread']<=1)? $_POST['unread']:"1";
+        $unread=isset($_POST['unread']) && ($_POST['unread']<=2)? $_POST['unread']:"1";
+        $unread2=isset($_POST['unread']) && ($_POST['unread']<=2)? $_POST['unread']:"2";
         
         $stmt->bindValue(1,'%'.$_POST['title'].'%',PDO::PARAM_STR);
         $stmt->bindValue(2,'%'.$_POST['author'].'%',PDO::PARAM_STR);
@@ -156,8 +158,8 @@
         echo "<td>". $row['publication_date']."</td>";
 
 
-        $option=['0'=>'未読',
-                 '1'=>'既読'];
+        $option=['1'=>'未読',
+                 '2'=>'既読'];
             $unread=$row['unread'] ;
             $unreaddisp=$option[$row['unread']];
         echo "<td>".$unreaddisp."</td>";

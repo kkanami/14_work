@@ -107,11 +107,11 @@
             <div>
                 <label>未読/既読</label>
                 <br>
-                <input type="radio" id="0" name="unread" value="0" <?php if(empty($_POST['unread']) || $_POST['unread']=== "0" ){ echo 'checked';} ?> />
-                <label for="0">未読</label>
+                <input type="radio" id="1" name="unread" value="1" <?php if(empty($_POST['unread']) || $_POST['unread']=== "1" ){ echo 'checked';} ?> >
+                <label for="1">未読</label>
 
-                <input type="radio" id="1" name="unread" value="1" <?php if(!empty($_POST['unread']) && $_POST['unread']=== "1" ){ echo 'checked';} ?> />
-                <label for="1">既読</label>
+                <input type="radio" id="2" name="unread" value="2" <?php if(!empty($_POST['unread']) && $_POST['unread']=== "2" ){ echo 'checked';} ?> >
+                <label for="2">既読</label>
             </div>
 
 

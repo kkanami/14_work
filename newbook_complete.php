@@ -81,7 +81,7 @@ $stmt->execute();
             <h1>蔵書登録</h1>
             <p><span>登録完了しました</span></p>
             <form action="mypage.php">
-                <input type="submit" class="button1" value="マイページへ戻る">
+                <input type="submit" class="button" value="マイページへ戻る">
             </form>
         </div>
     </div>

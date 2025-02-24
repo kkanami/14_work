@@ -70,46 +70,46 @@
                 <input type="text" class="text" pattern="^[ぁ-ん一-龠ー]*$" size="35" maxlength="10" id="family_name" name="family_name" value="<?php if(!empty($_POST['family_name'])){echo $_POST['family_name'];}?>">
                 <br>
             </div>
-            <p id="family_name_msg"></p>
+            <p id="family_name_msg" style="color: red"></p>
 
             <div>
                 <label>名前（名）</label>
                 <br>
                 <input type="text" class="text" pattern="^[ぁ-ん一-龠ー]*$" size="35" maxlength="10" id="last_name" name="last_name" value="<?php if(!empty($_POST['last_name'])){echo $_POST['last_name'];}?>">
             </div>
-            <p id="last_name_msg"></p>
+            <p id="last_name_msg" style="color: red"></p>
 
             <div>
                 <label>ニックネーム</label>
                 <br>
                 <input type="text" class="text" size="35" maxlength="10" id="nick_name" name="nick_name" value="<?php if(!empty($_POST['nick_name'])){echo $_POST['nick_name'];}?>">
             </div>
-            <p id="nick_name_msg"></p>
+            <p id="nick_name_msg" style="color: red"></p>
 
             <div>
                 <label>メールアドレス</label>
                 <br>
                 <input type="email" class="text" size="60" maxlength="100" id="mail" name="mail" value="<?php if(!empty($_POST['mail'])){echo $_POST['mail'];}?>">
             </div>
-            <p id="mail_msg"></p>
+            <p id="mail_msg" style="color: red"></p>
 
             <div>
                 <label>パスワード</label>
                 <br>
                 <input type="password" pattern="^[0-9a-zA-Z]*$" class="text" size="35" maxlength="10" id="password" name="password" value="<?php if(!empty($_POST['password'])){echo $_POST['password'];}?>">
             </div>
-            <p id="password_msg"></p>
+            <p id="password_msg" style="color: red"></p>
 
             <div>
                 <label>性別</label>
                 <br>
-                <input type="radio" id="1" name="gender" value="1" <?php if(!empty($_POST['gender']) && $_POST['gender']=== "1" ){ echo 'checked';} ?> />
-                <label for="2">男</label>
+                <input type="radio" id="1" name="gender" value="1" <?php if(!empty($_POST['gender']) && $_POST['gender']=== "1" ){ echo 'checked';} ?> >
+                <label for="1">男</label>
 
-                <input type="radio" id="2" name="gender" value="2" <?php if(!empty($_POST['gender']) && $_POST['gender']=== "2" ){ echo 'checked';} ?> />
+                <input type="radio" id="2" name="gender" value="2" <?php if(!empty($_POST['gender']) && $_POST['gender']=== "2" ){ echo 'checked';} ?> >
                 <label for="1">女</label>
 
-                <input type="radio" id="3" name="gender" value="3" <?php if(empty($_POST['gender']) || $_POST['gender']=== "3" ){ echo 'checked';} ?> />
+                <input type="radio" id="3" name="gender" value="3" <?php if(empty($_POST['gender']) || $_POST['gender']=== "3" ){ echo 'checked';} ?> >
                 <label for="2">未選択</label>
             </div>
 
@@ -119,7 +119,7 @@
                 <br>
                 <input type="text" pattern="^[0-9]*$" class="text" size="35" maxlength="7" id="postal_code" name="postal_code" value="<?php if(!empty($_POST['postal_code'])){echo $_POST['postal_code'];}?>">
             </div>
-            <p id="postal_code_msg"></p>
+        
 
 
             <div>
@@ -177,31 +177,27 @@
                     <option value="沖縄県" data-pref-id="47" <?php if( !empty($_POST['prefecture']) && $_POST['prefecture'] === "沖縄県" ){ echo 'selected'; } ?>>沖縄県</option>
                 </select>
             </div>
-            <p id="prefecture_msg"></p>
+    
 
             <div>
                 <label>住所（市区町村）</label>
                 <br>
                 <input type="text" class="text" pattern="^[　ー０-９ぁ-んァ-ヶｱ-ﾝﾞﾟ一-龠ー]*$" size="35" maxlength="10" id="address_1" name="address_1" value="<?php if(!empty($_POST['address_1'])){echo $_POST['address_1'];}?>">
             </div>
-            <p id="address_1_msg"></p>
+        
 
             <div>
                 <label>住所（番地）</label>
                 <br>
                 <input type="text" class="text" pattern="^[　ー０-９ぁ-んァ-ヶｱ-ﾝﾞﾟ一-龠ー]*$" size="60" maxlength="100" id="address_2" name="address_2" value="<?php if(!empty($_POST['address_2'])){echo $_POST['address_2'];}?>">
             </div>
-            <p id="address_2_msg"></p>
+   
 
             <div>
                 <input type="submit" class="button" value="確認する">
             </div>
 
         </form>
-
-
-
-        <br>
 
         <form class="back" action="index.php">
             <input type="submit" class="button" value="TOPページへ戻る">

@@ -28,16 +28,17 @@
 </head>
 
 <body>
-   
-    header
-  <header>
+
+    <header>
         <div class="img_icon">
-             <a href="index.php"><img src="img/library.png" alt="TOPページへ"></a>
+            <a href="index.php"><img src="img/library.png" alt="TOPページへ"></a>
         </div>
-     
+
         <div class="content">
             <ul class="menu">
-                <li><h2>Collection Of Book</h2></li>
+                <li>
+                    <h2>Collection Of Book</h2>
+                </li>
                 <li><a href="mypage.php">マイページ</a></li>
                 <li> <a href="profile.php">プロフィール</a></li>
                 <li> <a href="newbook.php">蔵書登録</a></li>
@@ -49,7 +50,7 @@
     </header>
 
     <main>
-        <h1>蔵書削除完了画面</h1>
+
 
 
         <?php
@@ -68,15 +69,17 @@
         ?>
 
         <div class="top_image">
-            <p><span>削除完了しました</span></p>
-            <form action="mypage.html">
+            <form action="mypage.html" class="main">
+                <h1>蔵書削除完了画面</h1>
+                <p><span>削除完了しました</span></p>
+
                 <input type="submit" class="button" value="マイページへ戻る">
             </form>
         </div>
 
     </main>
 
-   
+
 </body>
 
 </html>

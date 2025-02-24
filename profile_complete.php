@@ -29,11 +29,11 @@
 </head>
 
 <body>
-     <header>
+  <header>
         <div class="img_icon">
-            <a href="index.php"><img src="img/library.png" alt="TOPページへ"></a>
+             <a href="index.php"><img src="img/library.png" alt="TOPページへ"></a>
         </div>
-        
+     
         <div class="content">
             <ul class="menu">
                 <li><h2>Collection Of Book</h2></li>
@@ -41,7 +41,7 @@
                 <li> <a href="profile.php">プロフィール</a></li>
                 <li> <a href="newbook.php">蔵書登録</a></li>
                 <li> <a href="search.php">蔵書検索</a></li>
-                <li><a href="login.php">ログイン</a></li>
+                <li><a href="index.php">ログイン</a></li>
                 <li><a href="logout.php">ログアウト</a></li>
             </ul>
         </div>
@@ -49,9 +49,8 @@
 
 
 
-
     <main>
-        <h1>プロフィール更新完了画面</h1>
+     
 
         <?php
         //PDO
@@ -77,6 +76,7 @@
         <div class="top_image">
            
             <form action="mypage.php" class="main">
+                  <h1>プロフィール更新完了画面</h1>
                 <p><span>更新完了しました</span></p>
                 <input type="submit" class="button" value="マイページへ戻る">
             </form>

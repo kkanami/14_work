@@ -86,8 +86,8 @@
             <p>未読/既読
                 <br>
                 <?php if(!empty($_POST['unread'])){
-            $option=['0'=>'未読',
-                    '1'=>'既読'];
+            $option=['1'=>'未読',
+                    '2'=>'既読'];
             $unread=$_POST['unread'] ;
             $unreaddisp=$option[$_POST['unread']];
              echo $unreaddisp; }?>

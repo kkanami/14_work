@@ -40,21 +40,19 @@
 </head>
 
 <body>
-    <header>
+  <header>
         <div class="img_icon">
-            <a href="index.php"><img src="img/library.png" alt="TOPページへ"></a>
+             <a href="index.php"><img src="img/library.png" alt="TOPページへ"></a>
         </div>
-
+     
         <div class="content">
             <ul class="menu">
-                <li>
-                    <h2>Collection Of Book</h2>
-                </li>
+                <li><h2>Collection Of Book</h2></li>
                 <li><a href="mypage.php">マイページ</a></li>
                 <li> <a href="profile.php">プロフィール</a></li>
                 <li> <a href="newbook.php">蔵書登録</a></li>
                 <li> <a href="search.php">蔵書検索</a></li>
-                <li><a href="login.php">ログイン</a></li>
+                <li><a href="index.php">ログイン</a></li>
                 <li><a href="logout.php">ログアウト</a></li>
             </ul>
         </div>
@@ -111,28 +109,28 @@
                     <div>
                         <label>出版日</label>
                         <br>
-                        <input type="text" class="text" size="100" maxlength="100" id="publication_date" name="publication_date" value="<?php if(!empty($_POST['publication_date'])){echo $_POST['publication_date'];}else{echo $row['publication_date'];}?>">
+                       <input type="text" pattern="^[0-9]{4}/(0[1-9]|1[0-2])/(0[1-9]|[12][0-9]|3[01])$" class="text" size="10" maxlength="10" id="publication_date" name="publication_date" placeholder="yyyy/mm/dd"value="<?php if(!empty($_POST['publication_date'])){echo $_POST['publication_date'];}else{echo $row['publication_date'];}?>">
                     </div>
 
                     <div>
                         <label>未読/既読</label>
                         <br>
-                        <input type="radio" id="0" name="unread" value="0" <?php if(empty($_POST['unread'])) { if($row['unread']== "0" ){ echo 'checked';}} else{ if($_POST['unread']== "0" ){ echo 'checked';}}?> />
-                        <label for="0">未読</label>
+                        <input type="radio" id="1" name="unread" value="1" <?php if(empty($_POST['unread'])) { if($row['unread']== "1" ){ echo 'checked';}} else{ if($_POST['unread']== "1" ){ echo 'checked';}}?>>
+                        <label for="1">未読</label>
 
-                        <input type="radio" id="1" name="unread" value="1" <?php if(empty($_POST['unread'])) { if($row['unread']== "1" ){ echo 'checked';}} else{ if($_POST['unread']== "1" ){ echo 'checked';}}?> />
-                        <label for="1">既読</label>
+                        <input type="radio" id="2" name="unread" value="2" <?php if(empty($_POST['unread'])) { if($row['unread']== "2" ){ echo 'checked';}} else{ if($_POST['unread']== "2" ){ echo 'checked';}}?>>
+                        <label for="2">既読</label>
                     </div>
 
                     <div>
                         <label>memo</label>
                         <br>
-                        <input type="text" class="text" size="100" maxlength="100" id="memo" name="memo" value="<?php if(!empty($_POST['memo'])){echo $_POST['memo'];}else{echo $row['memo'];}?>">
+                        <textarea rows="5" cols="50" maxlength="200"  id="memo" name="memo" value="<?php if(!empty($_POST['memo'])){echo $_POST['memo'];}else{echo $row['memo'];}?>"></textarea>
                     </div>
 
                     <div>
                         <input type='hidden' value='<?php echo $_POST["resultid1"];?>' name='resultid1' id='resultid1'>
-                        <input type="submit" class="submit" value="確認する">
+                        <input type="submit" class="button" value="確認する">
                     </div>
 
                 </form>

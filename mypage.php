@@ -51,30 +51,32 @@
     </header>
 
     <main>
-        <h1>catalog</h1>
-        <?php
+        <div class="top_image">
+            <div class="main">
+                <h1>catalog</h1>
+                <?php
         $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
         $stmt=$pdo->query("select* from collection_book where owner = '". $_SESSION['user']."' order by id desc");
         
 
              while($row=$stmt->fetch()){
-                echo '<table border="1">' ;
+                echo '<table class="mypage">' ;
               
                 $result= $row['id'];
-                $option=['0'=>'未読',
-                         '1'=>'既読'];
+                $option=['1'=>'未読',
+                         '2'=>'既読'];
                 $unread=$row['unread'] ;
                 $unreaddisp=$option[$row['unread']];
-                echo '<tr><td class="left">'.$unreaddisp.'</td><td class="center"></td><td class="right"></td></tr>';
-                echo '<tr><td class="td2"></td><td></td><td>'. $row['title']."</td></tr>";
-                echo '<tr><td class="td3"></td><td></td><td>'. $row['author']."</td></tr>";
-                echo '<tr><td clas="td4">'. $row['isbn']."</td><td></td><td>". $row['publisher']."</td></tr>";
-                echo '<tr><td class="td5"></td><td></td><td>'. $row['publication_date']."</td></tr>";
+                echo '<tr><th class="left">'.$unreaddisp.'</th><th class="center"></th><th class="right"></th></tr>';
+                echo '<tr><td></td><td></td><td>'. $row['title']."</td></tr>";
+                echo '<tr><td></td><td><br></td><td>'. $row['author']."</td></tr>";
+                echo '<tr><td>'. $row['isbn']."</td><td><br></td><td>". $row['publisher']."</td></tr>";
+                echo '<tr><td></td><td><br></td><td>'. $row['publication_date']."</td></tr>";
                
                  
               
                  
-                echo '<tr><td class="td6"><form method="post" action="update.php" >';
+                echo '<tr><td><form method="post" action="update.php" >';
                 echo "<input type='hidden' value={$result} name='resultid1' id='resultid1'>";
                 echo '<input type="submit" class="button" value="更新">';
                 echo "</form></td>";
@@ -92,7 +94,8 @@
           
         
     ?>
-
+            </div>
+        </div>
     </main>
 
 

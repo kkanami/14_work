@@ -28,15 +28,16 @@
 </head>
 
 <body>
-   header
-  <header>
+    <header>
         <div class="img_icon">
-             <a href="index.php"><img src="img/library.png" alt="TOPページへ"></a>
+            <a href="index.php"><img src="img/library.png" alt="TOPページへ"></a>
         </div>
-     
+
         <div class="content">
             <ul class="menu">
-                <li><h2>Collection Of Book</h2></li>
+                <li>
+                    <h2>Collection Of Book</h2>
+                </li>
                 <li><a href="mypage.php">マイページ</a></li>
                 <li> <a href="profile.php">プロフィール</a></li>
                 <li> <a href="newbook.php">蔵書登録</a></li>
@@ -47,11 +48,13 @@
         </div>
     </header>
     <main>
-        <h1>蔵書削除画面</h1>
+        <div class="top_image">
+            <div class="main">
+                <h1>蔵書削除画面</h1>
 
 
 
-        <?php
+                <?php
         //PDO
         mb_internal_encoding("utf8");
         $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
@@ -59,77 +62,77 @@
         $stmt=$pdo->query("select*from collection_book where id = '".$_POST['resultid2']."'");
         $row=$stmt->fetch(); }?>
 
-        <table>
-            <tr>
-                <th>タイトル
-                </th>
-                <td>
-                    <?php  if(isset($row['title'])){echo $row['title']; }?></td>
-            </tr>
+                <table class="delete">
+                    <tr>
+                        <th>タイトル
+                        </th>
+                        <td>
+                            <?php  if(isset($row['title'])){echo $row['title']; }?></td>
+                    </tr>
 
-            <tr>
-                <th>著書
-                </th>
-                <td>
-                    <?php if(isset($row['author'])){echo $row['author']; }?>
-                </td>
-            </tr>
+                    <tr>
+                        <th>著書
+                        </th>
+                        <td>
+                            <?php if(isset($row['author'])){echo $row['author']; }?>
+                        </td>
+                    </tr>
 
-            <tr>
-                <th>ISBN/ISSN
-                </th>
-                <td>
-                    <?php if(isset($row['isbn'])){echo $row['isbn']; } ?>
-                </td>
-            </tr>
+                    <tr>
+                        <th>ISBN/ISSN
+                        </th>
+                        <td>
+                            <?php if(isset($row['isbn'])){echo $row['isbn']; } ?>
+                        </td>
+                    </tr>
 
-            <tr>
-                <th>出版者
-                </th>
-                <td>
-                    <?php if(isset($row['publisher'])){echo $row['publisher']; } ?>
-                </td>
-            </tr>
+                    <tr>
+                        <th>出版者
+                        </th>
+                        <td>
+                            <?php if(isset($row['publisher'])){echo $row['publisher']; } ?>
+                        </td>
+                    </tr>
 
-            <tr>
-                <th>出版日
-                </th>
-                <td>
-                    <?php if(isset($row['publication_date'])){echo $row['publication_date']; } ?>
-                </td>
-            </tr>
+                    <tr>
+                        <th>出版日
+                        </th>
+                        <td>
+                            <?php if(isset($row['publication_date'])){echo $row['publication_date']; } ?>
+                        </td>
+                    </tr>
 
-            <tr>
-                <th>未読/既読
-                </th>
-                <td>
-                    <?php if(!empty($_POST['unread'])){
-            $option=['0'=>'未読',
-                    '1'=>'既読'];
-            $unread=$row['unread'] ;
-            $unreaddisp=$option[$row['unread']];
-             echo $unreaddisp;} ?>
-                </td>
-            </tr>
+                    <tr>
+                        <th>未読/既読
+                        </th>
+                        <td>
+                            <?php if(!empty($_POST['unread'])){
+                            $option=['0'=>'未読',
+                                    '1'=>'既読'];
+                            $unread=$row['unread'] ;
+                            $unreaddisp=$option[$row['unread']];
+                             echo $unreaddisp;} ?>
+                        </td>
+                    </tr>
 
-            <tr>
-                <th>memo
-                </th>
-                <td>
-                    <?phpif(isset($row['memo'])){echo $row['memo']; } ?>
-                </td>
-            </tr>
-
-
-
-        </table>
-
-        <form method="post"  action="delete_confirm.php">
-            <input type='hidden' value='<?php echo $_POST["resultid2"];?>' name='resultid2' id='resultid2'>
-            <input type="submit" class="button" value="確認する">
-        </form>
+                    <tr>
+                        <th>memo
+                        </th>
+                        <td>
+                            <?phpif(isset($row['memo'])){echo $row['memo']; } ?>
+                        </td>
+                    </tr>
 
 
+
+                </table>
+
+                <form method="post" action="delete_confirm.php">
+                    <input type='hidden' value='<?php echo $_POST["resultid2"];?>' name='resultid2' id='resultid2'>
+                    <input type="submit" class="button" value="確認する">
+                </form>
+            </div>
+        </div>
     </main>
 
 
