@@ -28,18 +28,21 @@
 </head>
 
 <body>
-  <header>
+ <header>
         <div class="img_icon">
-             <a href="index.php"><img src="img/library.png" alt="TOPページへ"></a>
+            <a href="index.php"><img src="img/library.png" alt="TOPページへ"></a>
         </div>
-     
+
         <div class="content">
             <ul class="menu">
-                <li><h2>Collection Of Book</h2></li>
+                <li>
+                    <h2>Collection Of Book</h2>
+                </li>
                 <li><a href="mypage.php">マイページ</a></li>
                 <li> <a href="profile.php">プロフィール</a></li>
                 <li> <a href="newbook.php">蔵書登録</a></li>
                 <li> <a href="search.php">蔵書検索</a></li>
+                <li> <a href="library.php">ライブラリー</a></li>
                 <li><a href="index.php">ログイン</a></li>
                 <li><a href="logout.php">ログアウト</a></li>
             </ul>
@@ -55,10 +58,12 @@
      
         try{
             $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
-            $sql="update collection_book set title= :title , author= :author , isbn= :isbn , publisher= :publisher , publication_date= :publication_date , unread= :unread , memo= :memo , update_time= now() where id = :id";
+            $sql="update collection_book set private= :private , title= :title , author= :author , isbn= :isbn , publisher= :publisher , publication_date= :publication_date , unread= :unread , memo= :memo , update_time= now() where id = :id";
 
             $stmt=$pdo->prepare($sql);
         if(!empty($_POST)) {
+            $private=(int) $_POST['private'];
+            $stmt->bindvalue(':private',$private,PDO::PARAM_STR);
             $stmt->bindValue(':title',$_POST['title'],PDO::PARAM_STR);
             $stmt->bindvalue(':author',$_POST['author'],PDO::PARAM_STR);
             $stmt->bindvalue(':isbn',$_POST['isbn'],PDO::PARAM_STR);

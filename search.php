@@ -28,7 +28,7 @@
 </head>
 
 <body>
-    <header>
+   <header>
         <div class="img_icon">
             <a href="index.php"><img src="img/library.png" alt="TOPページへ"></a>
         </div>
@@ -42,6 +42,7 @@
                 <li> <a href="profile.php">プロフィール</a></li>
                 <li> <a href="newbook.php">蔵書登録</a></li>
                 <li> <a href="search.php">蔵書検索</a></li>
+                <li> <a href="library.php">ライブラリー</a></li>
                 <li><a href="index.php">ログイン</a></li>
                 <li><a href="logout.php">ログアウト</a></li>
             </ul>
@@ -55,7 +56,7 @@
                 <table class="search">
                     <tr>
                         <th>タイトル</th>
-                        <td><input type="text" class="text" id="" name="title" value=""></td>
+                        <td><input type="text" class="text" id="title" name="title" value=""></td>
                         <th>著者</th>
                         <td><input type="text" class="text" id="author" name="author" value=""></td>
                     </tr>
@@ -67,7 +68,7 @@
                     </tr>
                     <tr>
                         <th>出版日</th>
-                        <td> <input type="ememo" class="text" id="publication_date" name="publication_date" value=""></td>
+                        <td> <input type="text" class="text" id="publication_date" name="publication_date" value=""></td>
                         <th>未読/既読</th>
                         <td> <input type="radio" id="1" name="unread" value="1" checked>
                             <label for="1">未読</label>
@@ -79,7 +80,15 @@
                     </tr>
                     <tr>
                         <th>memo</th>
-                        <td colspan="3"> <input type="text" class="text" size="60" id="memo" name="memo" value=""></td>
+                        <td> <input type="text" class="text" id="memo" name="memo" value=""></td>
+                        <th>非公開/公開</th>
+                        <td> <input type="radio" id="1" name="private" value="1" checked>
+                            <label for="1">非公開</label>
+                            <input type="radio" id="2" name="private" value="2">
+                            <label for="2">公開</label>
+                            <input type="radio" id="3" name="private" value="3">
+                            <label for="3">未選択</label>
+                        </td>
                     </tr>
                 </table>
 
@@ -93,12 +102,15 @@
         mb_internal_encoding("utf8");
         $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
         $sql="select*from collection_book 
-        where title like ? and author like ? and isbn like ? and publisher like ? and publication_date like ? and memo like ? and (unread=? or unread=?) and owner like ?";
+        where title like ? and author like ? and isbn like ? and publisher like ? and publication_date like ? and memo like ? and (unread=? or unread=?) and (private=? or private=?) and owner like ?";
             
       if(!empty($_POST)) {
         $stmt = $pdo->prepare($sql);
         $unread=isset($_POST['unread']) && ($_POST['unread']<=2)? $_POST['unread']:"1";
         $unread2=isset($_POST['unread']) && ($_POST['unread']<=2)? $_POST['unread']:"2";
+          
+        $private=isset($_POST['private']) && ($_POST['private']<=2)? $_POST['private']:"1";
+        $private2=isset($_POST['private']) && ($_POST['private']<=2)? $_POST['private']:"2";
         
         $stmt->bindValue(1,'%'.$_POST['title'].'%',PDO::PARAM_STR);
         $stmt->bindValue(2,'%'.$_POST['author'].'%',PDO::PARAM_STR);
@@ -108,7 +120,9 @@
         $stmt->bindValue(6,'%'.$_POST['memo'].'%',PDO::PARAM_STR);
         $stmt->bindValue(7,$unread);
         $stmt->bindValue(8,$unread2);
-        $stmt->bindValue(9,'%'.$_SESSION['user'].'%',PDO::PARAM_STR);
+        $stmt->bindValue(9,$private);
+        $stmt->bindValue(10,$private2);
+        $stmt->bindValue(11,'%'.$_SESSION['user'].'%',PDO::PARAM_STR);
           
         $stmt->execute();
       }
@@ -119,7 +133,7 @@
   
         echo  '<table class="result" border="1">' ;
         echo  "<tr>";
-        echo  " <th>ID</th>";
+        echo  " <th>非公開/公開</th>";
         echo  " <th>タイトル</th>";
         echo  "<th>著者</th>";
         echo  "  <th>ISBN/ISSN</th>";
@@ -138,7 +152,11 @@
                 
         echo "<tr>";
         $result= $row['id'];
-        echo "<td>".$result."</td>";
+        $option=['1'=>'非公開',
+                 '2'=>'公開'];
+            $private=$row['private'] ;
+            $privatedisp=$option[$row['private']];
+        echo "<td>".$privatedisp."</td>";
 
         echo "<td>". $row['title']."</td>";
         echo "<td>". $row['author']."</td>";
@@ -146,14 +164,13 @@
         echo "<td>". $row['publisher']."</td>";
         echo "<td>". $row['publication_date']."</td>";
 
-
         $option=['1'=>'未読',
                  '2'=>'既読'];
             $unread=$row['unread'] ;
             $unreaddisp=$option[$row['unread']];
         echo "<td>".$unreaddisp."</td>";
-     echo "<td>".$row['memo']."</td>";
-
+         
+        echo "<td>".$row['memo']."</td>";
 
         $regist=$row['registered_time'];
        if(empty($row['registered_time'])){

@@ -30,7 +30,7 @@
 </head>
 
 <body>
-    <header>
+   <header>
         <div class="img_icon">
             <a href="index.php"><img src="img/library.png" alt="TOPページへ"></a>
         </div>
@@ -44,6 +44,7 @@
                 <li> <a href="profile.php">プロフィール</a></li>
                 <li> <a href="newbook.php">蔵書登録</a></li>
                 <li> <a href="search.php">蔵書検索</a></li>
+                <li> <a href="library.php">ライブラリー</a></li>
                 <li><a href="index.php">ログイン</a></li>
                 <li><a href="logout.php">ログアウト</a></li>
             </ul>
@@ -64,6 +65,16 @@
                 $row=$stmt->fetch() ;
                     }
                 ?>
+                
+                 <div>
+                    <label>非公開/公開</label>
+                    <br>
+                    <input type="radio" id="1" name="private" value="1" <?php if(empty($_POST['private'])) { if($row['private']== "1" ){ echo 'checked';}} else{ if($_POST['private']== "1" ){ echo 'checked';}}?>>
+                    <label for="1">非公開</label>
+
+                    <input type="radio" id="2" name="private" value="2" <?php if(empty($_POST['private'])) { if($row['private']== "2" ){ echo 'checked';}} else{ if($_POST['private']== "2" ){ echo 'checked';}}?>>
+                    <label for="2">公開</label>
+                </div>
 
                 <div>
                     <label>タイトル</label>

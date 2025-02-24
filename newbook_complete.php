@@ -19,10 +19,13 @@
 
 try{
 $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
-$sql="insert into collection_book(title,author,isbn,publisher,publication_date,unread,memo,owner)
-values(:title,:author,:isbn,:publisher,:publication_date,:unread,:memo, :owner)";
+$sql="insert into collection_book(private,title,author,isbn,publisher,publication_date,unread,memo,owner)
+values(:private,:title,:author,:isbn,:publisher,:publication_date,:unread,:memo, :owner)";
 if(!empty($_POST['title'])) {
 $stmt=$pdo->prepare($sql);
+    
+$private=(int) $_POST['private'];
+$stmt->bindvalue(":private",$private,PDO::PARAM_STR);
 $stmt->bindValue(":title",$_POST['title'],PDO::PARAM_STR);
 $stmt->bindvalue(":author",$_POST['author'],PDO::PARAM_STR);
 $stmt->bindvalue(":isbn",$_POST['isbn'],PDO::PARAM_STR);
@@ -54,7 +57,7 @@ $stmt->execute();
 </head>
 
 <body>
-    <header>
+   <header>
         <div class="img_icon">
             <a href="index.php"><img src="img/library.png" alt="TOPページへ"></a>
         </div>
@@ -68,6 +71,7 @@ $stmt->execute();
                 <li> <a href="profile.php">プロフィール</a></li>
                 <li> <a href="newbook.php">蔵書登録</a></li>
                 <li> <a href="search.php">蔵書検索</a></li>
+                <li> <a href="library.php">ライブラリー</a></li>
                 <li><a href="index.php">ログイン</a></li>
                 <li><a href="logout.php">ログアウト</a></li>
             </ul>

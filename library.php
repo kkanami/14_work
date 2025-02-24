@@ -23,13 +23,13 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Collection of Book</title>
+    <title>library</title>
     <link rel="stylesheet" type="text/css" href="css/mypage.css">
 
 </head>
 
 <body>
-   <header>
+    <header>
         <div class="img_icon">
             <a href="index.php"><img src="img/library.png" alt="TOPページへ"></a>
         </div>
@@ -53,11 +53,11 @@
     <main>
         <div class="top_image">
             <div class="main">
-                <h1>catalog</h1>
+                <h1>library</h1>
                 <ul class="list">
                     <?php
         $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
-        $stmt=$pdo->query("select* from collection_book where owner = '". $_SESSION['user']."' order by id desc");
+        $stmt=$pdo->query("select* from collection_book where private=2 order by id desc");
 
              while($row=$stmt->fetch()){
                 echo '<li class="list-item"><table class="mypage">' ;
