@@ -27,10 +27,22 @@
     <title>蔵書更新画面</title>
 
     <link rel="stylesheet" type="text/css" href="css/regist.css">
+       <script type="text/javascript">
+        function check() {
+            if (form.title.value == "") {
+                document.getElementById("title_msg").innerHTML = "タイトルを入力してください。";
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+    </script>
+
 </head>
 
 <body>
-   <header>
+    <header>
         <div class="img_icon">
             <a href="index.php"><img src="img/library.png" alt="TOPページへ"></a>
         </div>
@@ -44,7 +56,6 @@
                 <li> <a href="profile.php">プロフィール</a></li>
                 <li> <a href="newbook.php">蔵書登録</a></li>
                 <li> <a href="search.php">蔵書検索</a></li>
-                <li> <a href="library.php">ライブラリー</a></li>
                 <li><a href="index.php">ログイン</a></li>
                 <li><a href="logout.php">ログアウト</a></li>
             </ul>
@@ -53,7 +64,7 @@
 
     <main>
         <div class="top_image">
-            <form method="post" class="main" action="update_confirm.php" 　name="form" id="form" onsubmit="check()">
+            <form method="post" class="main" action="update_confirm.php" 　name="form" id="form" onsubmit="return check()">
 
                 <h1>蔵書更新画面</h1>
                 <?php
@@ -133,17 +144,7 @@
 
         </div>
     </main>
-    <script type="text/javascript">
-        function check() {
-            if (form.title.value == "") {
-                document.getElementById("title_msg").innerHTML = "タイトルを入力してください。";
-                return false;
-            } else {
-                return true;
-            }
-        }
-
-    </script>
+  
 </body>
 
 </html>

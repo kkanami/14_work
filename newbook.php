@@ -26,6 +26,18 @@
     <meta charset="utf-8">
     <title>蔵書登録画面</title>
     <link rel="stylesheet" type="text/css" href="css/regist.css">
+     <script type="text/javascript">
+        function check() {
+            if (form.title.value == "") {
+                document.getElementById("title_msg").innerHTML = "タイトルを入力してください。";
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+    </script>
+
 </head>
 
 <body>
@@ -52,7 +64,7 @@
 
     <div class="top_image">
 
-        <form method="post" class="main" action="newbook_confirm.php" 　name="form" id="form" onsubmit="check()">
+        <form method="post" class="main" action="newbook_confirm.php" 　name="form" id="form" onsubmit="return check()">
             <h1>蔵書登録</h1>
              
               <div>
@@ -71,7 +83,7 @@
                 <input type="text" class="text" size="30" maxlength="30" id="title" name="title" value="<?php if(!empty($_POST['title'])){echo $_POST['title'];}?>">
                 <br>
             </div>
-            <p id="title_msg"></p>
+            <p style="color:#FF0000" id="title_msg"></p>
 
             <div>
                 <label>著書</label>
@@ -120,18 +132,7 @@
         </form>
 
     </div>
-    <script type="text/javascript">
-        function check() {
-            if (form.title.value == "") {
-                document.getElementById("title").innerHTML = "タイトルを入力してください。";
-                return false;
-            } else {
-                return true;
-            }
-        }
-
-    </script>
-
+   
 </body>
 
 </html>

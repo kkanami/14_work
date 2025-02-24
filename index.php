@@ -10,10 +10,31 @@
     <title>TOPページ</title>
 
     <link rel="stylesheet" type="text/css" href="css/index.css">
+    <script type="text/javascript">
+        function check1() {
+            if (form.mail.value == "") {
+                document.getElementById("mail_msg").innerHTML = "メールアドレスを入力してください。";
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        function check2() {
+            if (form.password.value == "") {
+                document.getElementById("password_msg").innerHTML = "パスワードを入力してください。";
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+    </script>
 </head>
 
 
 <body>
+
     <main>
         <div class="top_image">
             <h1>Collection Of Book</h1>
@@ -27,7 +48,7 @@
                 ?>
             </div>
 
-            <form method="post" class="login" action="index.php" name="login" id="login" onsubmit="return !! (check1()& check2())">
+            <form method="post" class="login" action="index.php" name="form" id="form" onsubmit="return !!(check1()& check2())">
 
                 <div>
                     <label>メールアドレス</label>
@@ -86,26 +107,7 @@
     ?>
 
     </main>
-    <script type="text/javascript">
-        function check1() {
-            if (form.mail.value == "") {
-                document.getElementById("mail_msg").innerHTML = "メールアドレスを入力してください。";
-                return false;
-            } else {
-                return true;
-            }
-        }
 
-        function check2() {
-            if (form.password.value == "") {
-                document.getElementById("password_msg").innerHTML = "パスワードを入力してください。";
-                return false;
-            } else {
-                return true;
-            }
-        }
-
-    </script>
 </body>
 
 </html>
