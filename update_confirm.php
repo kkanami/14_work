@@ -25,7 +25,7 @@
     <meta charset="utf-8">
     <title>蔵書更新確認画面</title>
 
-    <link rel="stylesheet" type="text/css" href="regist.css">
+    <link rel="stylesheet" type="text/css" href="css/regist.css">
 </head>
 
 <body>
@@ -108,11 +108,11 @@
                         </th>
                         <td>
                             <?php if(!empty($_POST['unread'])){
-            $option=['1'=>'未読',
-                    '2'=>'既読'];
-            $unread=$_POST['unread'] ;
-            $unreaddisp=$option[$_POST['unread']];
-             echo $unreaddisp; }?>
+                            $option=['1'=>'未読',
+                                    '2'=>'既読'];
+                            $unread=$_POST['unread'] ;
+                            $unreaddisp=$option[$_POST['unread']];
+                             echo $unreaddisp; }?>
 
                         </td>
                     </tr>

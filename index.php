@@ -2,34 +2,14 @@
 <?php
     mb_internal_encoding("utf8");
     session_start();
-  
 ?>
 <html lang="ja">
 
 <head>
     <meta charset="utf-8">
     <title>TOPページ</title>
-    <script type="text/javascript">
-        function check1() {
-            if (form.mail.value == "") {
-                document.getElementById("mail_msg").innerHTML = "メールアドレスを入力してください。";
-                return false;
-            } else {
-                return true;
-            }
-        }
 
-        function check2() {
-            if (form.password.value == "") {
-                document.getElementById("password_msg").innerHTML = "パスワードを入力してください。";
-                return false;
-            } else {
-                return true;
-            }
-        }
-
-    </script>
-    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 
 
@@ -41,10 +21,10 @@
 
             <div class="mypage">
                 <?php
-              if(!empty($_SESSION['user'])) {
-                echo "ログイン済です<a href=mypage.php>▶マイページに戻る</a>";
-              }
-            ?>
+                  if(!empty($_SESSION['user'])) {
+                    echo "ログイン済です<a href=mypage.php>▶マイページに戻る</a>";
+                  }
+                ?>
             </div>
 
             <form method="post" class="login" action="index.php" name="login" id="login" onsubmit="return !! (check1()& check2())">
@@ -70,12 +50,7 @@
             <a href="regist.php">新規登録</a>
         </div>
 
-
-
-
         <?php
-
-
     if((empty($_POST['mail'])) || (empty($_POST['password']))) {
         exit;
     }
@@ -110,10 +85,27 @@
  
     ?>
 
-
-
-
     </main>
+    <script type="text/javascript">
+        function check1() {
+            if (form.mail.value == "") {
+                document.getElementById("mail_msg").innerHTML = "メールアドレスを入力してください。";
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        function check2() {
+            if (form.password.value == "") {
+                document.getElementById("password_msg").innerHTML = "パスワードを入力してください。";
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+    </script>
 </body>
 
 </html>

@@ -25,22 +25,8 @@
 <head>
     <meta charset="utf-8">
     <title>蔵書登録画面</title>
-
-    <script type="text/javascript">
-        function check() {
-            if (form.title.value == "") {
-                document.getElementById("title").innerHTML = "タイトルを入力してください。";
-                return false;
-            } else {
-                return true;
-            }
-        }
-
-    </script>
-
-    <link rel="stylesheet" type="text/css" href="regist.css">
+    <link rel="stylesheet" type="text/css" href="css/regist.css">
 </head>
-
 
 <body>
     <header>
@@ -81,20 +67,17 @@
                 <input type="text" class="text" size="30" maxlength="30" id="author" name="author" value="<?php if(!empty($_POST['author'])){echo $_POST['author'];}?>">
             </div>
 
-
             <div>
                 <label>ISBN/ISSN</label>
                 <br>
                 <input type="text" pattern="^[-0-9]+$" class="text" size="13" maxlength="13" id="isbn" name="isbn" value="<?php if(!empty($_POST['isbn'])){echo $_POST['isbn'];}?>">
             </div>
-
-
+            
             <div>
                 <label>出版者</label>
                 <br>
                 <input type="text" class="text" size="30" maxlength="30" id="publisher" name="publisher" value="<?php if(!empty($_POST['publisher'])){echo $_POST['publisher'];}?>">
             </div>
-
 
             <div>
                 <label>出版日</label>
@@ -102,28 +85,21 @@
                 <input type="text" pattern="^[0-9]{4}/(0[1-9]|1[0-2])/(0[1-9]|[12][0-9]|3[01])$" class="text" size="10" maxlength="10" id="publication_date" name="publication_date" placeholder="yyyy/mm/dd" value="<?php if(!empty($_POST['publication_date'])){echo $_POST['publication_date'];}?>">
             </div>
 
-
-
             <div>
                 <label>未読/既読</label>
                 <br>
-                <input type="radio" id="1" name="unread" value="1" <?php if(empty($_POST['unread']) || $_POST['unread']=== "1" ){ echo 'checked';} ?> >
+                <input type="radio" id="1" name="unread" value="1" <?php if(empty($_POST['unread']) || $_POST['unread']=== "1" ){ echo 'checked';} ?>>
                 <label for="1">未読</label>
 
-                <input type="radio" id="2" name="unread" value="2" <?php if(!empty($_POST['unread']) && $_POST['unread']=== "2" ){ echo 'checked';} ?> >
+                <input type="radio" id="2" name="unread" value="2" <?php if(!empty($_POST['unread']) && $_POST['unread']=== "2" ){ echo 'checked';} ?>>
                 <label for="2">既読</label>
             </div>
-
-
 
             <div>
                 <label>memo</label>
                 <br>
                 <textarea rows="5" cols="50" maxlength="200" id="memo" name="memo" value="<?php if(!empty($_POST['memo'])){echo $_POST['memo'];}?>"></textarea>
             </div>
-
-
-
 
             <div>
                 <input type="submit" class="button" value="確認する">
@@ -132,7 +108,17 @@
         </form>
 
     </div>
-   
+    <script type="text/javascript">
+        function check() {
+            if (form.title.value == "") {
+                document.getElementById("title").innerHTML = "タイトルを入力してください。";
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+    </script>
 
 </body>
 

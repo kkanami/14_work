@@ -26,7 +26,7 @@
     <meta charset="utf-8">
     <title>プロフィール更新確認画面</title>
 
-    <link rel="stylesheet" type="text/css" href="regist.css">
+    <link rel="stylesheet" type="text/css" href="css/regist.css">
 </head>
 
 <body>
@@ -58,14 +58,13 @@
                 <table class="profile">
 
                     <?php
-            //PDO
-            mb_internal_encoding("utf8");
-            $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
-            if(empty($_POST)) {
-                $stmt=$pdo->query("select*from login_user where id = 5");
-                $row=$stmt->fetch();
-            }
-            ?>
+                    mb_internal_encoding("utf8");
+                    $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
+                    if(empty($_POST)) {
+                        $stmt=$pdo->query("select*from login_user where id = 5");
+                        $row=$stmt->fetch();
+                    }
+                    ?>
                     <tr>
                         <th>名前（姓）
                         </th>
@@ -112,12 +111,12 @@
                         </th>
                         <td>
                             <?php if(!empty($_POST['gender'])){
-            $option=['1'=>'男',
-                    '2'=>'女',
-                    '3'=>'未選択'];
-            $gender=$_POST['gender'] ;
-            $genderdisp=$option[$_POST['gender']];
-             echo $genderdisp; }?>
+                            $option=['1'=>'男',
+                                    '2'=>'女',
+                                    '3'=>'未選択'];
+                            $gender=$_POST['gender'] ;
+                            $genderdisp=$option[$_POST['gender']];
+                             echo $genderdisp; }?>
                         </td>
                     </tr>
 
@@ -135,7 +134,7 @@
                         </th>
                         <td>
                             <?php 
-           if(!empty($_POST['prefecture'])){echo $_POST['prefecture'];} ?>
+                            if(!empty($_POST['prefecture'])){echo $_POST['prefecture'];} ?>
                         </td>
                     </tr>
 
@@ -172,7 +171,6 @@
                         <input type="hidden" value="<?php if(!empty($_POST['address_2'])){echo $_POST['address_2'];}?>" name="address_2">
 
                     </form>
-
 
                     <form method="post" action="profile_complete.php">
                         <input type="submit" class="button" value="登録する">

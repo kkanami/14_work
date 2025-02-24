@@ -25,18 +25,20 @@
     <meta charset="utf-8">
     <title>プロフィール更新完了画面</title>
 
-    <link rel="stylesheet" type="text/css" href="regist.css">
+    <link rel="stylesheet" type="text/css" href="css/regist.css">
 </head>
 
 <body>
-  <header>
+    <header>
         <div class="img_icon">
-             <a href="index.php"><img src="img/library.png" alt="TOPページへ"></a>
+            <a href="index.php"><img src="img/library.png" alt="TOPページへ"></a>
         </div>
-     
+
         <div class="content">
             <ul class="menu">
-                <li><h2>Collection Of Book</h2></li>
+                <li>
+                    <h2>Collection Of Book</h2>
+                </li>
                 <li><a href="mypage.php">マイページ</a></li>
                 <li> <a href="profile.php">プロフィール</a></li>
                 <li> <a href="newbook.php">蔵書登録</a></li>
@@ -47,11 +49,7 @@
         </div>
     </header>
 
-
-
     <main>
-     
-
         <?php
         //PDO
         mb_internal_encoding("utf8");
@@ -74,20 +72,16 @@
         ?>
 
         <div class="top_image">
-           
+
             <form action="mypage.php" class="main">
-                  <h1>プロフィール更新完了画面</h1>
+                <h1>プロフィール更新完了画面</h1>
                 <p><span>更新完了しました</span></p>
                 <input type="submit" class="button" value="マイページへ戻る">
             </form>
         </div>
 
-
-
-
     </main>
 
-  
 </body>
 
 </html>

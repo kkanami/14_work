@@ -16,9 +16,7 @@
     
     echo  "<p>". $row['nick_name']."さん"."</p>";
 
-
 ?>
-
 
 <!doctype html>
 <html lang="ja">
@@ -26,7 +24,8 @@
 <head>
     <meta charset="utf-8">
     <title>Collection of Book</title>
-    <link rel="stylesheet" type="text/css" href="mypage.css">
+    <link rel="stylesheet" type="text/css" href="css/mypage.css">
+
 </head>
 
 <body>
@@ -54,13 +53,13 @@
         <div class="top_image">
             <div class="main">
                 <h1>catalog</h1>
-                <?php
+                <ul class="list">
+                    <?php
         $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
         $stmt=$pdo->query("select* from collection_book where owner = '". $_SESSION['user']."' order by id desc");
-        
 
              while($row=$stmt->fetch()){
-                echo '<table class="mypage">' ;
+                echo '<li class="list-item"><table class="mypage">' ;
               
                 $result= $row['id'];
                 $option=['1'=>'未読',
@@ -71,10 +70,7 @@
                 echo '<tr><td></td><td></td><td>'. $row['title']."</td></tr>";
                 echo '<tr><td></td><td><br></td><td>'. $row['author']."</td></tr>";
                 echo '<tr><td>'. $row['isbn']."</td><td><br></td><td>". $row['publisher']."</td></tr>";
-                echo '<tr><td></td><td><br></td><td>'. $row['publication_date']."</td></tr>";
-               
-                 
-              
+                echo '<tr><td></td><td><br></td><td>'. $row['publication_date']."</td></tr>";   
                  
                 echo '<tr><td><form method="post" action="update.php" >';
                 echo "<input type='hidden' value={$result} name='resultid1' id='resultid1'>";
@@ -86,19 +82,21 @@
                 echo "<input type='submit' class='button' value='削除'>";
  
                 echo "</form>";
-                echo "</td><td>". $row['memo']."</td></tr>";
+                echo "</td><td>". $row['memo']."</td></tr></li>";
            
-                 echo "</table>";
-                 echo "<br>";
-               }
-          
-        
-    ?>
+                echo "</table>";
+                echo "<br>";
+               } 
+            ?>
+                </ul>
+                <div class="list-btn">
+                    <button>もっと見る</button>
+                </div>
             </div>
         </div>
     </main>
-
-
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/mypage.js"></script>
 </body>
 
 </html>

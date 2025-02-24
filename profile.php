@@ -16,7 +16,6 @@
     
     echo  "<p>". $row['nick_name']."さん"."</p>";
 
-
 ?>
 
 
@@ -26,57 +25,20 @@
 <head>
     <meta charset="utf-8">
     <title>プロフィール画面</title>
-    <script type="text/javascript">
-        function check() {
-            if (form.family_name.value == "") {
-                document.getElementById("family_name_msg").innerHTML = "名前（姓）を入力してください。";
-                return false;
-            } else {
-                return true;
-            }
-        }
-
-        function check2() {
-            if (form.last_name.value == "") {
-                document.getElementById("last_name_msg").innerHTML = "名前（名）を入力してください。";
-                return false;
-            } else {
-                return true;
-            }
-        }
-
-        function check3() {
-            if (form.nick_name.value == "") {
-                document.getElementById("nick_name_msg").innerHTML = "ニックネームを入力してください。";
-                return false;
-            } else {
-                return true;
-            }
-        }
-
-        function check4() {
-            if (form.mail.value == "") {
-                document.getElementById("mail_msg").innerHTML = "メールアドレスを入力してください。";
-                return false;
-            } else {
-                return true;
-            }
-        }
-
-    </script>
-
-    <link rel="stylesheet" type="text/css" href="regist.css">
+    <link rel="stylesheet" type="text/css" href="css/regist.css">
 </head>
 
 <body>
-  <header>
+    <header>
         <div class="img_icon">
-             <a href="index.php"><img src="img/library.png" alt="TOPページへ"></a>
+            <a href="index.php"><img src="img/library.png" alt="TOPページへ"></a>
         </div>
-     
+
         <div class="content">
             <ul class="menu">
-                <li><h2>Collection Of Book</h2></li>
+                <li>
+                    <h2>Collection Of Book</h2>
+                </li>
                 <li><a href="mypage.php">マイページ</a></li>
                 <li> <a href="profile.php">プロフィール</a></li>
                 <li> <a href="newbook.php">蔵書登録</a></li>
@@ -116,7 +78,6 @@
                     </div>
                     <p style="color:#FF0000" id="last_name_msg"></p>
 
-
                     <div>
                         <label>ニックネーム</label>
                         <br>
@@ -153,17 +114,13 @@
 
                     </div>
 
-
                     <div>
                         <label>郵便番号</label>
                         <br>
                         <input type="text" pattern="^[0-9]*$" class="text" size="35" maxlength="7" id="postal_code" name="postal_code" value="<?php if(!empty($_POST['postal_code'])){echo $_POST['postal_code'];}else{echo $row['postal_code'];}?>">
                     </div>
-           
-
 
                     <div>
-
                         <label>住所（都道府県）</label>
                         <br>
                         <select class="dropdown" id="prefecture" name="prefecture">
@@ -217,34 +174,65 @@
                             <option value="沖縄県" data-pref-id="47" <?php if(empty($_POST['prefecture'])){if( $row['prefecture'] === "沖縄県" ){ echo 'selected'; } }else{if( $_POST['prefecture'] === "沖縄県" ){ echo 'selected'; } }?>>沖縄県</option>
                         </select>
                     </div>
-               
 
                     <div>
                         <label>住所（市区町村）</label>
                         <br>
                         <input type="text" class="text" pattern="^[　ー０-９ぁ-んァ-ヶｱ-ﾝﾞﾟ一-龠ー]*$" size="35" maxlength="10" id="address_1" name="address_1" value="<?php if(!empty($_POST['address_1'])){echo $_POST['address_1'];}else{echo $row['address_1'];}?>">
                     </div>
-                
 
                     <div>
                         <label>住所（番地）</label>
                         <br>
                         <input type="text" class="text" pattern="^[　ー０-９ぁ-んァ-ヶｱ-ﾝﾞﾟ一-龠ー]*$" size="60" maxlength="100" id="address_2" name="address_2" value="<?php if(!empty($_POST['address_2'])){echo $_POST['address_2'];}else{echo $row['address_2'];}?>">
                     </div>
-               
-
 
                     <div>
                         <input type='hidden' value='<?php echo $_POST["resultid1"];?>' name='resultid1' id='resultid1'>
                         <input type="submit" class="button" value="確認する">
                     </div>
-
                 </form>
             </div>
-
         </div>
     </main>
+    <script type="text/javascript">
+        function check() {
+            if (form.family_name.value == "") {
+                document.getElementById("family_name_msg").innerHTML = "名前（姓）を入力してください。";
+                return false;
+            } else {
+                return true;
+            }
+        }
 
+        function check2() {
+            if (form.last_name.value == "") {
+                document.getElementById("last_name_msg").innerHTML = "名前（名）を入力してください。";
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        function check3() {
+            if (form.nick_name.value == "") {
+                document.getElementById("nick_name_msg").innerHTML = "ニックネームを入力してください。";
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        function check4() {
+            if (form.mail.value == "") {
+                document.getElementById("mail_msg").innerHTML = "メールアドレスを入力してください。";
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+    </script>
 </body>
 
 </html>

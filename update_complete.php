@@ -16,7 +16,6 @@
     
     echo  "<p>". $row['nick_name']."さん"."</p>";
 
-
 ?>
 <!doctype html>
 <html lang="ja">
@@ -25,7 +24,7 @@
     <meta charset="utf-8">
     <title>蔵書更新完了画面</title>
 
-    <link rel="stylesheet" type="text/css" href="regist.css">
+    <link rel="stylesheet" type="text/css" href="css/regist.css">
 </head>
 
 <body>
@@ -47,12 +46,9 @@
         </div>
     </header>
 
-
-
     <main>
         <div class="top_image">
        
-
             <?php
         //PDO
         mb_internal_encoding("utf8");
@@ -84,14 +80,11 @@
         
         ?>
 
-
-
             <form action="mypage.php" class="main">
                     <h1>蔵書更新完了画面</h1>
                 <p><span>更新完了しました</span></p>
                 <input type="submit" class="button" value="マイページへ戻る">
             </form>
-
 
         </div>
 

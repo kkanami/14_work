@@ -44,14 +44,13 @@ $stmt->execute();
 }
 ?>
 
-
 <!doctype html>
 <html lang="ja">
 
 <head>
     <meta charset="utf-8">
     <title>蔵書登録完了画面</title>
-    <link rel="stylesheet" type="text/css" href="regist.css">
+    <link rel="stylesheet" type="text/css" href="css/regist.css">
 </head>
 
 <body>

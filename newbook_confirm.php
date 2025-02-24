@@ -26,19 +26,20 @@
 <head>
     <meta charset="utf-8">
     <title>蔵書登録確認画面</title>
-    <link rel="stylesheet" type="text/css" href="regist.css">
+    <link rel="stylesheet" type="text/css" href="css/regist.css">
 </head>
-
 
 <body>
     <header>
         <div class="img_icon">
-             <a href="index.php"><img src="img/library.png" alt="TOPページへ"></a>
+            <a href="index.php"><img src="img/library.png" alt="TOPページへ"></a>
         </div>
-     
+
         <div class="content">
             <ul class="menu">
-                <li><h2>Collection Of Book</h2></li>
+                <li>
+                    <h2>Collection Of Book</h2>
+                </li>
                 <li><a href="mypage.php">マイページ</a></li>
                 <li> <a href="profile.php">プロフィール</a></li>
                 <li> <a href="newbook.php">蔵書登録</a></li>
@@ -49,8 +50,7 @@
         </div>
     </header>
 
-
-       <div class="top_image">
+    <div class="top_image">
         <div class="main">
             <p>登録内容はこちらでよろしいですか？
                 <br>よければ「登録する」ボタンを押してください。
@@ -98,8 +98,19 @@
                 <?php if(!empty($_POST['memo'])){echo $_POST['memo'];} ?>
             </p>
 
-            
             <div class="button_container">
+                <form method="POST" action="newbook.php">
+                    <input type="submit" class="button" value="前に戻る">
+                    <input type="hidden" value="<?php if(!empty($_POST['title'])){echo $_POST['title'];}?>" name="title">
+                    <input type="hidden" value="<?php if(!empty($_POST['author'])){echo $_POST['author'];}?>" name="author">
+                    <input type="hidden" value="<?php if(!empty($_POST['isbn'])){echo $_POST['isbn'];}?>" name="isbn">
+                    <input type="hidden" value="<?php if(!empty($_POST['publisher'])){echo $_POST['publisher'];}?>" name="publisher">
+                    <input type="hidden" value="<?php if(!empty($_POST['publication_date'])){echo $_POST['publication_date'];}?>" name="publication_date">
+                    <input type="hidden" value="<?php if(!empty($_POST['unread'])){echo $_POST['unread'];}?>" name="unread">
+                    <input type="hidden" value="<?php if(!empty($_POST['memo'])){echo $_POST['memo'];}?>" name="memo">
+
+                </form>
+                
                 <form action="newbook_complete.php" method="post">
                     <input type="submit" class="button" value="登録する">
                     <input type="hidden" value="<?php if(!empty($_POST['title'])){echo $_POST['title'];}?>" name="title">
@@ -111,19 +122,6 @@
                     <input type="hidden" value="<?php if(!empty($_POST['memo'])){echo $_POST['memo'];}?>" name="memo">
 
                 </form>
- 
-                <form method="POST" action="newbook.php">
-                    <input type="submit" class="button" value="前に戻る">
-                    <input type="hidden" value="<?php if(!empty($_POST['title'])){echo $_POST['title'];}?>" name="title">
-                    <input type="hidden" value="<?php if(!empty($_POST['author'])){echo $_POST['author'];}?>" name="author">
-                    <input type="hidden" value="<?php if(!empty($_POST['isbn'])){echo $_POST['isbn'];}?>" name="isbn">
-                    <input type="hidden" value="<?php if(!empty($_POST['publisher'])){echo $_POST['publisher'];}?>" name="publisher">
-                    <input type="hidden" value="<?php if(!empty($_POST['publication_date'])){echo $_POST['publication_date'];}?>" name="publication_date">
-                    <input type="hidden" value="<?php if(!empty($_POST['unread'])){echo $_POST['unread'];}?>" name="unread">
-                    <input type="hidden" value="<?php if(!empty($_POST['memo'])){echo $_POST['memo'];}?>" name="memo">
-    
-                </form>
-
             </div>
         </div>
 

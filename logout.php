@@ -12,7 +12,7 @@
     <meta charset="utf-8">
     <title>ログアウト画面</title>
 
-    <link rel="stylesheet" type="text/css" href="regist.css">
+    <link rel="stylesheet" type="text/css" href="css/regist.css">
 </head>
 
 <body>
@@ -34,24 +34,14 @@
         </div>
     </header>
 
-
-
-
     <main>
         <h1>ログアウト画面</h1>
-
-
-
         <div class="logout">
             <p><span>ログアウトしました</span></p>
         </div>
 
-
-
-
     </main>
 
-  
 </body>
 
 </html>

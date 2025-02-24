@@ -34,7 +34,7 @@ $stmt->execute();
     <head>
         <meta charset="utf-8">
         <title>登録完了画面</title>
-        <link rel="stylesheet"type="text/css"href="regist.css">
+        <link rel="stylesheet"type="text/css"href="css/regist.css">
     </head>
     <body>
        <div class="top_image">

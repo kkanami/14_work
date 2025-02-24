@@ -16,7 +16,6 @@
     
     echo  "<p>". $row['nick_name']."さん"."</p>";
 
-
 ?>
 <!doctype html>
 <html lang="ja">
@@ -24,7 +23,7 @@
 <head>
     <meta charset="utf-8">
     <title>蔵書削除確認画面</title>
-    <link rel="stylesheet" type="text/css" href="regist.css">
+    <link rel="stylesheet" type="text/css" href="css/regist.css">
 </head>
 
 <body>
@@ -57,7 +56,6 @@
 
                 <table class="delete">
                     <tr>
-
                         <td>
                             <form action="delete.php" method="post">
                                 <input type='hidden' value='<?php echo $_POST["resultid2"];?>' name='resultid2' id='resultid2'>

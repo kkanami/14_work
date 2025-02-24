@@ -16,9 +16,7 @@
     
     echo  "<p>". $row['nick_name']."さん"."</p>";
 
-
 ?>
-
 
 <!doctype html>
 <html lang="ja">
@@ -26,7 +24,7 @@
 <head>
     <meta charset="utf-8">
     <title>蔵書検索画面</title>
-    <link rel="stylesheet" type="text/css" href="search.css">
+    <link rel="stylesheet" type="text/css" href="css/search.css">
 </head>
 
 <body>
@@ -51,9 +49,6 @@
     </header>
     <main>
         <div class="top_image">
-
-
-
 
             <form method="post" class="main" action="#">
                 <h1>蔵書検索画面</h1>
@@ -94,8 +89,6 @@
 
             </form>
 
-
-
             <?php
         mb_internal_encoding("utf8");
         $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
@@ -120,10 +113,6 @@
         $stmt->execute();
       }
               
-//           $stmt->debugDumpParams();     sql文の確認
-   
-                
-         //投稿を表示させるrow…行 stmt…statementの略。声明 fetch…取ってくる
                 
  if(!empty($_POST)){
      

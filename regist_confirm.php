@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>アカウント登録確認画面</title>
-    <link rel="stylesheet" type="text/css" href="regist.css">
+    <link rel="stylesheet" type="text/css" href="css/regist.css">
 </head>
 
 

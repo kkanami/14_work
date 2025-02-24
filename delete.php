@@ -24,7 +24,7 @@
 <head>
     <meta charset="utf-8">
     <title>蔵書削除画面</title>
-    <link rel="stylesheet" type="text/css" href="regist.css">
+    <link rel="stylesheet" type="text/css" href="css/regist.css">
 </head>
 
 <body>
@@ -55,12 +55,11 @@
 
 
                 <?php
-        //PDO
-        mb_internal_encoding("utf8");
-        $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
-          if(!empty($_POST['resultid2'])){
-        $stmt=$pdo->query("select*from collection_book where id = '".$_POST['resultid2']."'");
-        $row=$stmt->fetch(); }?>
+                mb_internal_encoding("utf8");
+                $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
+                  if(!empty($_POST['resultid2'])){
+                $stmt=$pdo->query("select*from collection_book where id = '".$_POST['resultid2']."'");
+                $row=$stmt->fetch(); }?>
 
                 <table class="delete">
                     <tr>
@@ -122,8 +121,6 @@
                             <?phpif(isset($row['memo'])){echo $row['memo']; } ?>
                         </td>
                     </tr>
-
-
 
                 </table>
 
