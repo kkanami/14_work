@@ -29,7 +29,7 @@
 </head>
 
 <body>
-   <header>
+    <header>
         <div class="img_icon">
             <a href="index.php"><img src="img/library.png" alt="TOPページへ"></a>
         </div>
@@ -53,7 +53,9 @@
     <main>
         <div class="top_image">
             <div class="main">
+
                 <h1>catalog</h1>
+
                 <ul class="list">
                     <?php
         $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
@@ -88,10 +90,10 @@
                 echo "<input type='submit' class='button' value='削除'>";
  
                 echo "</form>";
-                echo "</td><td>". $row['memo']."</td></tr></li>";
+                echo "</td><td>". $row['memo']."</td></tr>";
            
                 echo "</table>";
-                echo "<br>";
+                echo "<br></li>";
                } 
             ?>
                 </ul>
