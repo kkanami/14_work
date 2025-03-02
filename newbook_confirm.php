@@ -30,9 +30,9 @@
 </head>
 
 <body>
-   <header>
+  <header>
         <div class="img_icon">
-            <a href="index.php"><img src="img/library.png" alt="TOPページへ"></a>
+            <a href="index.php"><img src="img/library.png" title="TOPページへ" alt="TOPページへ"></a>
         </div>
 
         <div class="content">
@@ -45,7 +45,6 @@
                 <li> <a href="newbook.php">蔵書登録</a></li>
                 <li> <a href="search.php">蔵書検索</a></li>
                 <li> <a href="library.php">ライブラリー</a></li>
-                <li><a href="index.php">ログイン</a></li>
                 <li><a href="logout.php">ログアウト</a></li>
             </ul>
         </div>

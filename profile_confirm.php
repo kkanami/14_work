@@ -32,7 +32,7 @@
 <body>
    <header>
         <div class="img_icon">
-            <a href="index.php"><img src="img/library.png" alt="TOPページへ"></a>
+            <a href="index.php"><img src="img/library.png" title="TOPページへ" alt="TOPページへ"></a>
         </div>
 
         <div class="content">
@@ -45,7 +45,6 @@
                 <li> <a href="newbook.php">蔵書登録</a></li>
                 <li> <a href="search.php">蔵書検索</a></li>
                 <li> <a href="library.php">ライブラリー</a></li>
-                <li><a href="index.php">ログイン</a></li>
                 <li><a href="logout.php">ログアウト</a></li>
             </ul>
         </div>
@@ -174,7 +173,7 @@
                     </form>
 
                     <form method="post" action="profile_complete.php">
-                        <input type="submit" class="button" value="登録する">
+                        <input type="submit" class="button" value="更新する">
                         <input type="hidden" value="<?php if(!empty($_POST['family_name'])){echo $_POST['family_name'];}?>" name="family_name">
                         <input type="hidden" value="<?php if(!empty($_POST['last_name'])){echo $_POST['last_name'];}?>" name="last_name">
                         <input type="hidden" value="<?php if(!empty($_POST['nick_name'])){echo $_POST['nick_name'];}?>" name="nick_name">

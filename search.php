@@ -28,9 +28,9 @@
 </head>
 
 <body>
-   <header>
+  <header>
         <div class="img_icon">
-            <a href="index.php"><img src="img/library.png" alt="TOPページへ"></a>
+            <a href="index.php"><img src="img/library.png" title="TOPページへ" alt="TOPページへ"></a>
         </div>
 
         <div class="content">
@@ -43,7 +43,6 @@
                 <li> <a href="newbook.php">蔵書登録</a></li>
                 <li> <a href="search.php">蔵書検索</a></li>
                 <li> <a href="library.php">ライブラリー</a></li>
-                <li><a href="index.php">ログイン</a></li>
                 <li><a href="logout.php">ログアウト</a></li>
             </ul>
         </div>
@@ -70,11 +69,11 @@
                         <th>出版日</th>
                         <td> <input type="text" class="text" id="publication_date" name="publication_date" value=""></td>
                         <th>未読/既読</th>
-                        <td> <input type="radio" id="1" name="unread" value="1" checked>
+                        <td> <input type="radio" id="1" name="unread" value="1" >
                             <label for="1">未読</label>
                             <input type="radio" id="2" name="unread" value="2">
                             <label for="2">既読</label>
-                            <input type="radio" id="3" name="unread" value="3">
+                            <input type="radio" id="3" name="unread" value="3" checked>
                             <label for="3">未選択</label>
                         </td>
                     </tr>
@@ -82,11 +81,11 @@
                         <th>memo</th>
                         <td> <input type="text" class="text" id="memo" name="memo" value=""></td>
                         <th>非公開/公開</th>
-                        <td> <input type="radio" id="1" name="private" value="1" checked>
+                        <td> <input type="radio" id="1" name="private" value="1" >
                             <label for="1">非公開</label>
                             <input type="radio" id="2" name="private" value="2">
                             <label for="2">公開</label>
-                            <input type="radio" id="3" name="private" value="3">
+                            <input type="radio" id="3" name="private" value="3" checked>
                             <label for="3">未選択</label>
                         </td>
                     </tr>
