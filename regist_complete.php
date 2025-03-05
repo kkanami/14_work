@@ -1,7 +1,7 @@
 <?php
 mb_internal_encoding("utf8");
 try{
-$pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
+$pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","maria");
 $sql="insert into login_user(family_name,last_name,nick_name,mail,password,gender,postal_code,prefecture,address_1,address_2)
 values(:family_name,:last_name,:nick_name,:mail,:password,:gender,:postal_code,:prefecture,:address_1,:address_2)";
 if(!empty($_POST)) {

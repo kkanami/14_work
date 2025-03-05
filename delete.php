@@ -10,7 +10,7 @@
         exit();
     }
 
-    $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
+    $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","maria");
     $stmt=$pdo->query("select*from login_user where id = '". $_SESSION['user']."'");
     $row=$stmt->fetch();
     
@@ -56,7 +56,7 @@
 
                 <?php
                 mb_internal_encoding("utf8");
-                $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
+                $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","maria");
                   if(!empty($_POST['resultid2'])){
                 $stmt=$pdo->query("select*from collection_book where id = '".$_POST['resultid2']."'");
                 $row=$stmt->fetch(); }?>

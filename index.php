@@ -77,7 +77,7 @@
     }
 
     try{
-        $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
+        $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","maria");
         $sql="select*from login_user where mail = :mail";
         $stmt=$pdo->prepare($sql);
         $stmt->bindvalue(":mail", $_POST['mail'], PDO::PARAM_STR);

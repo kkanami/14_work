@@ -10,41 +10,41 @@
         exit();
     }
 
-    $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
+    $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","maria");
     $stmt=$pdo->query("select*from login_user where id = '". $_SESSION['user']."'");
     $row=$stmt->fetch();
     
     echo  "<p>". $row['nick_name']."さん"."</p>";
 
 
-try{
-$pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","");
-$sql="insert into collection_book(private,title,author,isbn,publisher,publication_date,unread,memo,owner)
-values(:private,:title,:author,:isbn,:publisher,:publication_date,:unread,:memo, :owner)";
-if(!empty($_POST['title'])) {
-$stmt=$pdo->prepare($sql);
-    
-$private=(int) $_POST['private'];
-$stmt->bindvalue(":private",$private,PDO::PARAM_STR);
-$stmt->bindValue(":title",$_POST['title'],PDO::PARAM_STR);
-$stmt->bindvalue(":author",$_POST['author'],PDO::PARAM_STR);
-$stmt->bindvalue(":isbn",$_POST['isbn'],PDO::PARAM_STR);
-$stmt->bindvalue(":publisher",$_POST['publisher'],PDO::PARAM_STR);
-$stmt->bindvalue(":publication_date",$_POST['publication_date'],PDO::PARAM_STR);
-$unread=(int) $_POST['unread'];
-$stmt->bindvalue(":unread",$unread,PDO::PARAM_STR);
-$stmt->bindvalue(":memo",$_POST['memo'],PDO::PARAM_STR);
-$owner=(int) $_SESSION['user'];
-$stmt->bindvalue(":owner",$owner,PDO::PARAM_STR);
+    try{
+    $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","maria");
+    $sql="insert into collection_book(private,title,author,isbn,publisher,publication_date,unread,memo,owner)
+    values(:private,:title,:author,:isbn,:publisher,:publication_date,:unread,:memo, :owner)";
+    if(!empty($_POST['title'])) {
+    $stmt=$pdo->prepare($sql);
 
-$stmt->execute();
-}
-}catch(Exception $e){
-	echo '<span style="color:#FF0000">エラーが発生したため蔵書登録できません。</span>';
-    echo $e->getMessage();
+    $private=(int) $_POST['private'];
+    $stmt->bindvalue(":private",$private,PDO::PARAM_STR);
+    $stmt->bindValue(":title",$_POST['title'],PDO::PARAM_STR);
+    $stmt->bindvalue(":author",$_POST['author'],PDO::PARAM_STR);
+    $stmt->bindvalue(":isbn",$_POST['isbn'],PDO::PARAM_STR);
+    $stmt->bindvalue(":publisher",$_POST['publisher'],PDO::PARAM_STR);
+    $stmt->bindvalue(":publication_date",$_POST['publication_date'],PDO::PARAM_STR);
+    $unread=(int) $_POST['unread'];
+    $stmt->bindvalue(":unread",$unread,PDO::PARAM_STR);
+    $stmt->bindvalue(":memo",$_POST['memo'],PDO::PARAM_STR);
+    $owner=(int) $_SESSION['user'];
+    $stmt->bindvalue(":owner",$owner,PDO::PARAM_STR);
 
-	exit();
-}
+    $stmt->execute();
+    }
+    }catch(Exception $e){
+        echo '<span style="color:#FF0000">エラーが発生したため蔵書登録できません。</span>';
+        echo $e->getMessage();
+
+        exit();
+    }
 ?>
 
 <!doctype html>
@@ -57,7 +57,7 @@ $stmt->execute();
 </head>
 
 <body>
-   <header>
+    <header>
         <div class="img_icon">
             <a href="index.php"><img src="img/library.png" title="TOPページへ" alt="TOPページへ"></a>
         </div>
