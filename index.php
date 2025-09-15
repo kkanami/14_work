@@ -94,7 +94,7 @@
         $row=$stmt->fetch();
 
         if(!$row){
-            echo "ログインに失敗しました。";
+            echo "<span>ログインに失敗しました。</span>";
             exit;
         }
 
@@ -102,13 +102,14 @@
             session_regenerate_id(true);
             $_SESSION['user']=$row['id'];
             header("Location: mypage.php");
+            exit;
         }else {
-            echo"ログインに失敗しました。";
+            echo"<span>ログインに失敗しました。</span>";
 
         }
 
     }catch(Exception $e){
-            echo '<span style="color:#FF0000">エラーが発生したためログイン情報を取得できません。</span>：';
+            echo '<span>エラーが発生したためログイン情報を取得できません。</span>：';
             echo $e->getMessage();
             exit();
     }
