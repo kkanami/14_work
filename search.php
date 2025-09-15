@@ -23,12 +23,18 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name=”description” content=”読書記録アプリケーション”>
+    <meta property=”og:type” content=”website” />
+    <meta property=”og:title” content=”Collection Of Book” />
+    <meta property=”og:description” content=”読書記録アプリケーション” />
+    <meta property=”og:site_name” content=”Collection Of Book” />
     <title>蔵書検索画面</title>
     <link rel="stylesheet" type="text/css" href="css/search.css">
 </head>
 
 <body>
-  <header>
+    <header>
         <div class="img_icon">
             <a href="index.php"><img src="img/library.png" title="TOPページへ" alt="TOPページへ"></a>
         </div>
@@ -53,11 +59,13 @@
             <form method="post" class="main" action="#">
                 <h1>蔵書検索画面</h1>
                 <table class="search">
-                    <tr>
+                     <tr>
                         <th>タイトル</th>
-                        <td><input type="text" class="text" id="title" name="title" value=""></td>
+                        <td colspan="3"><input type="text" class="text" size="60" id="title" name="title" value=""></td>
+                    </tr>
+                    <tr>
                         <th>著者</th>
-                        <td><input type="text" class="text" id="author" name="author" value=""></td>
+                        <td colspan="3"><input type="text" class="text" size="60" id="author" name="author" value=""></td>
                     </tr>
                     <tr>
                         <th>ISBN/ISSN</th>
@@ -89,6 +97,7 @@
                             <label for="3">未選択</label>
                         </td>
                     </tr>
+
                 </table>
 
                 <div class="search_submit">

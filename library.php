@@ -23,6 +23,12 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name=”description” content=”読書記録アプリケーション”>
+    <meta property=”og:type” content=”website” />
+    <meta property=”og:title” content=”Collection Of Book” />
+    <meta property=”og:description” content=”読書記録アプリケーション” />
+    <meta property=”og:site_name” content=”Collection Of Book” />
     <title>library</title>
     <link rel="stylesheet" type="text/css" href="css/mypage.css">
 
@@ -53,6 +59,9 @@
         <div class="top_image">
             <div class="main">
                 <h1>library</h1>
+                <p>ここでは他のユーザーが公開している本を閲覧できます。<br>
+                    気になる本は、コピーで自分の蔵書に追加できます。
+                </p>
                 <ul class="list">
                     <?php
         $pdo=new PDO("mysql:dbname=14_work;host=localhost;","root","maria");
@@ -77,20 +86,17 @@
                 echo '<tr><td>'. $row['isbn']."</td><td><br></td><td>". $row['publisher']."</td></tr>";
                 echo '<tr><td></td><td><br></td><td>'. $row['publication_date']."</td></tr>";   
                  
-                echo '<tr><td><form method="post" action="update.php" >';
-                echo "<input type='hidden' value={$result} name='resultid1' id='resultid1'>";
-                echo '<input type="submit" class="button" value="更新">';
-                echo "</form></td>";
+                echo '<tr><td></td>';
                  
-                echo '<td><form  method="post" action="delete.php">';
+                echo '<td><form  method="post" action="copy.php">';
                 echo "<input type='hidden' value={$result} name='resultid2' id='resultid2'>";
-                echo "<input type='submit' class='button' value='削除'>";
+                echo "<input type='submit' class='button' value='コピー'>";
  
                 echo "</form>";
-                echo "</td><td>". $row['memo']."</td></tr></li>";
+                echo "</td><td>". $row['memo']."</td></tr>";
            
                 echo "</table>";
-                echo "<br>";
+                echo "<br></li>";
                } 
             ?>
                 </ul>

@@ -24,12 +24,21 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name=”description” content=”読書記録アプリケーション”>
+    <meta property=”og:type” content=”website” />
+    <meta property=”og:title” content=”Collection Of Book” />
+    <meta property=”og:description” content=”読書記録アプリケーション” />
+    <meta property=”og:site_name” content=”Collection Of Book” />
     <title>プロフィール画面</title>
     <link rel="stylesheet" type="text/css" href="css/regist.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet">
 </head>
 
 <body>
-   <header>
+    <header>
         <div class="img_icon">
             <a href="index.php"><img src="img/library.png" title="TOPページへ" alt="TOPページへ"></a>
         </div>
@@ -50,8 +59,8 @@
     </header>
     <main>
         <div class="top_image">
-            <div class="main">
-                <form method="post" action="profile_confirm.php" 　name="form" id="form" onsubmit="return !! (check() & check2() & check3()& check4())">
+            
+                <form method="post" class="main" action="profile_confirm.php" 　name="form" id="form" onsubmit="return !! (check() & check2() & check3()& check4())">
 
                     <h1>プロフィール</h1>
                     <?php
@@ -67,7 +76,7 @@
                         <input type="text" class="text" pattern="^[ぁ-ん一-龠ー]*$" size="35" maxlength="10" id="family_name" name="family_name" value="<?php if(!empty($_POST['family_name'])){echo $_POST['family_name'];}else{echo $row['family_name'];}?>">
                         <br>
                     </div>
-                    <p style="color:#FF0000" id="family_name_msg"></p>
+                    <p class="required" id="family_name_msg"></p>
 
 
                     <div>
@@ -75,29 +84,29 @@
                         <br>
                         <input type="text" class="text" pattern="^[ぁ-ん一-龠ー]*$" size="35" maxlength="10" id="last_name" name="last_name" value="<?php if(!empty($_POST['last_name'])){echo $_POST['last_name'];}else{echo $row['last_name'];}?>">
                     </div>
-                    <p style="color:#FF0000" id="last_name_msg"></p>
+                    <p class="required" id="last_name_msg"></p>
 
                     <div>
                         <label>ニックネーム</label>
                         <br>
                         <input type="text" class="text" size="35" maxlength="10" id="nick_name" name="nick_name" value="<?php if(!empty($_POST['nick_name'])){echo $_POST['nick_name'];}else{echo $row['nick_name'];}?>">
                     </div>
-                    <p style="color:#FF0000" id="nick_name_msg"></p>
+                    <p class="required" id="nick_name_msg"></p>
 
                     <div>
                         <label>メールアドレス</label>
                         <br>
                         <input type="email" class="text" size="60" maxlength="100" id="mail" name="mail" value="<?php if(!empty($_POST['mail'])){echo $_POST['mail'];}else{echo $row['mail'];}?>">
                     </div>
-                    <p style="color:#FF0000" id="mail_msg"></p>
+                    <p class="required" id="mail_msg"></p>
 
                     <div>
                         <label>パスワード</label>
                         <br>
-                        <p style="color:#FF0000">セキュリティのため表示できません。変更する場合のみ入力してください。</p>
+                        <p class="required">セキュリティのため表示できません。変更する場合のみ入力してください。</p>
                         <input type="password" pattern="^[0-9a-zA-Z]*$" class="text" size="35" maxlength="10" id="password" name="password" value="<?php if(!empty($_POST['password'])){echo $_POST['password'];}?>">
                     </div>
-                    <p style="color:#FF0000" id="password_msg"></p>
+                    <p class="required" id="password_msg"></p>
 
                     <div>
                         <label>性別</label>
@@ -147,7 +156,7 @@
                             <option value="岐阜県" data-pref-id="21" <?php if(empty($_POST['prefecture'])){if( $row['prefecture'] === "岐阜県" ){ echo 'selected'; } }else{if( $_POST['prefecture'] === "岐阜県" ){ echo 'selected'; } }?>>岐阜県</option>
                             <option value="静岡県" data-pref-id="22" <?php if(empty($_POST['prefecture'])){if( $row['prefecture'] === "静岡県" ){ echo 'selected'; } }else{if( $_POST['prefecture'] === "静岡県" ){ echo 'selected'; }} ?>>静岡県</option>
                             <option value="愛知県" data-pref-id="23" <?php if(empty($_POST['prefecture'])){if( $row['prefecture'] === "愛知県" ){ echo 'selected'; } }else{if( $_POST['prefecture'] === "愛知県" ){ echo 'selected'; } }?>>愛知県</option>
-                            <option value="三重県" data-pref-id="24" <?phpif(empty($_POST['prefecture'])){if( $row['prefecture'] === "三重県" ){ echo 'selected'; } }else{if( $_POST['prefecture'] === "三重県" ){ echo 'selected'; }} ?>>三重県</option>
+                            <option value="三重県" data-pref-id="24" <?php if(empty($_POST['prefecture'])){if( $row['prefecture'] === "三重県" ){ echo 'selected'; } }else{if( $_POST['prefecture'] === "三重県" ){ echo 'selected'; }} ?>>三重県</option>
                             <option value="滋賀県" data-pref-id="25" <?php if(empty($_POST['prefecture'])){if( $row['prefecture'] === "滋賀県" ){ echo 'selected'; } }else{if( $_POST['prefecture'] === "滋賀県" ){ echo 'selected'; }}?>>滋賀県</option>
                             <option value="京都府" data-pref-id="26" <?php if(empty($_POST['prefecture'])){if( $row['prefecture'] === "京都府" ){ echo 'selected'; } }else{if( $_POST['prefecture'] === "京都府" ){ echo 'selected'; } }?>>京都府</option>
                             <option value="大阪府" data-pref-id="27" <?php if(empty($_POST['prefecture'])){if( $row['prefecture'] === "大阪府" ){ echo 'selected'; } }else{if( $_POST['prefecture'] === "大阪府" ){ echo 'selected'; } }?>>大阪府</option>
@@ -191,7 +200,7 @@
                         <input type="submit" class="button" value="確認する">
                     </div>
                 </form>
-            </div>
+            
         </div>
     </main>
     <script type="text/javascript">

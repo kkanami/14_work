@@ -24,12 +24,21 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name=”description” content=”読書記録アプリケーション”>
+    <meta property=”og:type” content=”website” />
+    <meta property=”og:title” content=”Collection Of Book” />
+    <meta property=”og:description” content=”読書記録アプリケーション” />
+    <meta property=”og:site_name” content=”Collection Of Book” />
     <title>蔵書登録画面</title>
     <link rel="stylesheet" type="text/css" href="css/regist.css">
-     <script type="text/javascript">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet">
+    <script type="text/javascript">
         function check() {
             if (form.title.value == "") {
-                document.getElementById("title_msg").innerHTML = "タイトルを入力してください。";
+                document.getElementById("title_msg").innerHTML = "*タイトルを入力してください。";
                 return false;
             } else {
                 return true;
@@ -41,7 +50,7 @@
 </head>
 
 <body>
-   <header>
+    <header>
         <div class="img_icon">
             <a href="index.php"><img src="img/library.png" title="TOPページへ" alt="TOPページへ"></a>
         </div>
@@ -65,8 +74,8 @@
 
         <form method="post" class="main" action="newbook_confirm.php" 　name="form" id="form" onsubmit="return check()">
             <h1>蔵書登録</h1>
-             
-              <div>
+            <p>*は必須項目です。</p>
+            <div>
                 <label>非公開/公開</label>
                 <br>
                 <input type="radio" id="1" name="private" value="1" <?php if(empty($_POST['private']) || $_POST['private']=== "1" ){ echo 'checked';} ?>>
@@ -77,12 +86,12 @@
             </div>
 
             <div>
-                <label>タイトル</label>
+                <label>タイトル*</label>
                 <br>
                 <input type="text" class="text" size="30" maxlength="30" id="title" name="title" value="<?php if(!empty($_POST['title'])){echo $_POST['title'];}?>">
                 <br>
             </div>
-            <p style="color:#FF0000" id="title_msg"></p>
+            <p class="required" id="title_msg"></p>
 
             <div>
                 <label>著書</label>
@@ -95,7 +104,7 @@
                 <br>
                 <input type="text" pattern="^[-0-9]+$" class="text" size="13" maxlength="13" id="isbn" name="isbn" value="<?php if(!empty($_POST['isbn'])){echo $_POST['isbn'];}?>">
             </div>
-            
+
             <div>
                 <label>出版者</label>
                 <br>
@@ -121,7 +130,7 @@
             <div>
                 <label>memo</label>
                 <br>
-                <textarea rows="5" cols="50" maxlength="200" id="memo" name="memo" value="<?php if(!empty($_POST['memo'])){echo $_POST['memo'];}?>"></textarea>
+                <textarea rows="5" cols="50" maxlength="200" id="memo" name="memo"><?php if(!empty($_POST['memo'])){echo $_POST['memo'];}?></textarea>
             </div>
 
             <div>
@@ -131,7 +140,7 @@
         </form>
 
     </div>
-   
+
 </body>
 
 </html>

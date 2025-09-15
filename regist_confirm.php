@@ -3,8 +3,17 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name=”description” content=”読書記録アプリケーション”>
+    <meta property=”og:type” content=”website” />
+    <meta property=”og:title” content=”Collection Of Book” />
+    <meta property=”og:description” content=”読書記録アプリケーション” />
+    <meta property=”og:site_name” content=”Collection Of Book” />
     <title>アカウント登録確認画面</title>
     <link rel="stylesheet" type="text/css" href="css/regist.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap" rel="stylesheet">
 </head>
 
 
@@ -76,8 +85,8 @@
                 <?php if(!empty($_POST['address_2'])){echo $_POST['address_2'];} ?>
             </p>
             <div class="button_container">
-            
-             <form method="POST" action="regist.php">
+
+                <form method="POST" action="regist.php">
                     <input type="submit" class="button" value="前に戻る">
                     <input type="hidden" value="<?php if(!empty($_POST['family_name'])){echo $_POST['family_name'];}?>" name="family_name">
                     <input type="hidden" value="<?php if(!empty($_POST['last_name'])){echo $_POST['last_name'];}?>" name="last_name">
@@ -91,8 +100,8 @@
                     <input type="hidden" value="<?php if(!empty($_POST['address_2'])){echo $_POST['address_2'];}?>" name="address_2">
 
                 </form>
-             
-             
+
+
                 <form action="regist_complete.php" method="post">
                     <input type="submit" class="button" value="登録する">
                     <input type="hidden" value="<?php if(!empty($_POST['family_name'])){echo $_POST['family_name'];}?>" name="family_name">
@@ -107,9 +116,9 @@
                     <input type="hidden" value="<?php if(!empty($_POST['address_2'])){echo $_POST['address_2'];}?>" name="address_2">
 
                 </form>
-                
-                
-              
+
+
+
 
             </div>
         </div>
